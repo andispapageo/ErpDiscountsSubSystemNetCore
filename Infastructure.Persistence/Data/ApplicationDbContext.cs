@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace ErpDiscountsSubSystemNetCore.Data
+namespace Infastructure.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {

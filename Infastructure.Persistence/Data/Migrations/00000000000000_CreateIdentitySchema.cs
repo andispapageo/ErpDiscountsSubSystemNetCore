@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
-namespace ErpDiscountsSubSystemNetCore.Data.Migrations
+namespace Infastructure.Data.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {
