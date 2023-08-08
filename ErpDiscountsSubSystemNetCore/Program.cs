@@ -1,6 +1,7 @@
 using Infastructure.Data;
 using Infastructure.Persistence.Config;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -40,10 +41,18 @@ app.MapRazorPages();
 
 using (var scope = app.Services.CreateScope())
 {
-    var services = scope.ServiceProvider;
-
-    var context = services.GetRequiredService<ApplicationDbContext>();
-    context.Database.Migrate();
+    using (var appContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>())
+    {
+        try
+        {
+            appContext.Database.Migrate();
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex.Message, ex);
+            throw;
+        }
+    }
 }
 
 

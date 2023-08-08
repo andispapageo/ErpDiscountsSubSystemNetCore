@@ -23,6 +23,7 @@ namespace Infastructure.Data
         {
 
             base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<TbCurrency>(entity =>
             {
                 entity.ToTable("TbCurrency").HasKey(x => x.Id).HasName("PK_TbCurrency");
@@ -63,7 +64,7 @@ namespace Infastructure.Data
 
             modelBuilder.Entity<TbDiscountType>(entity =>
             {
-                entity.ToTable("TbDiscountType").HasKey(x => x.Id).HasName("PK_TbDiscountTypes");
+                entity.ToTable("TbDiscountTypes").HasKey(x => x.Id).HasName("PK_TbDiscountTypes");
                 entity.Property(e => e.DiscountType).HasMaxLength(128);
             });
 
@@ -95,14 +96,15 @@ namespace Infastructure.Data
             
         }
 
-        public async void Seed()
+        public void Seed()
         {
-            Add(new TbDiscountType() { DiscountType = "Percentage" });
-            Add(new TbDiscountType() { DiscountType = "Constant" });
+            TbDiscountTypes.Add(new TbDiscountType() { DiscountType = "Percentage" });
+            
+            //Add(new TbDiscountType() { DiscountType = "Constant" });
 
-            Add(new TbCurrency() { Name = "USD", Symbol = "$" });
-            Add(new TbCurrency() { Name = "EUR", Symbol = "€" });
-            await SaveChangesAsync();
+            //Add(new TbCurrency() { Name = "USD", Symbol = "$" });
+            //Add(new TbCurrency() { Name = "EUR", Symbol = "€" });
+            SaveChanges();
         }
     }
 }

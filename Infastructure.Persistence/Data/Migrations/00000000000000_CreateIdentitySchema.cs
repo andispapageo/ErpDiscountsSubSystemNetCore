@@ -177,7 +177,7 @@ namespace Infastructure.Data.Migrations
               columns: table => new
               {
                   Id = table.Column<int>(nullable: false)
-                   .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.SequenceHiLo),
+                   .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                   DiscountType = table.Column<string>(maxLength: 128, nullable: false),
 
               },
@@ -216,14 +216,12 @@ namespace Infastructure.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TbDiscount", x => new { x.Id });
-
                     table.ForeignKey(
                         name: "FK_TbDiscount_TbDiscountTypes_DiscountTypeId",
                         column: x => x.DiscountTypeId,
                         principalTable: "TbDiscountTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-
                     table.ForeignKey(
                        name: "FK_TbDiscounts_TbCurrency_CurrencyId",
                        column: x => x.CurrencyId,
@@ -353,17 +351,6 @@ namespace Infastructure.Data.Migrations
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
-            migrationBuilder.DropTable(
-                name: "TbDiscounts");
-
-            migrationBuilder.DropTable(
-                name: "TbPriceLists");
-
-            migrationBuilder.DropTable(
-                name: "TbPromotion");
-
-            migrationBuilder.DropTable(
-                name: "TbCoupons");
         }
     }
 }
