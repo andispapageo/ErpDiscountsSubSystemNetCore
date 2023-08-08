@@ -1,0 +1,1 @@
+﻿Scaffold-DbContext "Server=(localdb)\mssqllocaldb;Database=aspnet-ErpDiscountsSubSystemNetCore-4c50680b-f398-40b0-ab12-bfebaee7417b;Trusted_Connection=True;MultipleActiveResultSets=true" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Entities

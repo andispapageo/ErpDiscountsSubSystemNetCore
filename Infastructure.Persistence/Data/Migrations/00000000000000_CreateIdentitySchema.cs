@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using System;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace Infastructure.Data.Migrations
 {
@@ -153,6 +155,139 @@ namespace Infastructure.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+
+            migrationBuilder.CreateTable(
+               name: "TbCustomer",
+               columns: table => new
+               {
+                   Id = table.Column<int>(nullable: false)
+                    .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                   Name = table.Column<string>(maxLength: 128, nullable: false),
+                   LastName = table.Column<string>(maxLength: 128, nullable: false),
+                   Address = table.Column<string>(maxLength: 128, nullable: false),
+                   //(..)
+               },
+               constraints: table =>
+               {
+                   table.PrimaryKey("PK_TbCustomer", x => new { x.Id });
+               });
+
+            migrationBuilder.CreateTable(
+              name: "TbDiscountTypes",
+              columns: table => new
+              {
+                  Id = table.Column<int>(nullable: false)
+                   .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.SequenceHiLo),
+                  DiscountType = table.Column<string>(maxLength: 128, nullable: false),
+
+              },
+              constraints: table =>
+              {
+                  table.PrimaryKey("PK_TbDiscountTypes", x => new { x.Id });
+              });
+
+            migrationBuilder.CreateTable(
+                 name: "TbCurrency",
+                 columns: table => new
+                 {
+                     Id = table.Column<int>(nullable: false)
+                     .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                     Name = table.Column<string>(maxLength: 128, nullable: false),
+                     Symbol = table.Column<string>(maxLength: 10, nullable: false),
+                 },
+                 constraints: table =>
+                 {
+                     table.PrimaryKey("PK_TbCurrency", x => new { x.Id });
+                 });
+
+
+            migrationBuilder.CreateTable(
+                name: "TbDiscount",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                    .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    DiscountTypeId = table.Column<int>(nullable: false),
+                    DiscountName = table.Column<string>(maxLength: 128, nullable: false),
+                    Price = table.Column<decimal>(nullable: false),
+                    CurrencyId = table.Column<int>(nullable: false),
+                    PriorityOrderId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TbDiscount", x => new { x.Id });
+
+                    table.ForeignKey(
+                        name: "FK_TbDiscount_TbDiscountTypes_DiscountTypeId",
+                        column: x => x.DiscountTypeId,
+                        principalTable: "TbDiscountTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+
+                    table.ForeignKey(
+                       name: "FK_TbDiscounts_TbCurrency_CurrencyId",
+                       column: x => x.CurrencyId,
+                       principalTable: "TbCurrency",
+                       principalColumn: "Id",
+                       onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TbOrder",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                     .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ProductId = table.Column<int>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    UpdatedDate = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TbOrder", x => new { x.Id });
+
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TbOrderDiscount",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                    .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    OrderId = table.Column<int>(nullable: false),
+                    CustomerId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TbOrderDiscount", x => new { x.Id });
+                    table.ForeignKey(
+                        name: "FK_TbOrderDiscount_TbOrder_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "TbOrder",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_TbOrderDiscount_TbCustomer_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "TbCustomer",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TbSubscriptions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                     .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(maxLength: 128, nullable: false),
+                    Symbol = table.Column<string>(maxLength: 10, nullable: false),
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TbSubscriptions", x => new { x.Id });
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -191,6 +326,8 @@ namespace Infastructure.Data.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -215,6 +352,18 @@ namespace Infastructure.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "TbDiscounts");
+
+            migrationBuilder.DropTable(
+                name: "TbPriceLists");
+
+            migrationBuilder.DropTable(
+                name: "TbPromotion");
+
+            migrationBuilder.DropTable(
+                name: "TbCoupons");
         }
     }
 }
