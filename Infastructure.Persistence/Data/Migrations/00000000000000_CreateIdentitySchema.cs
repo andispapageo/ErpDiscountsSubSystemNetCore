@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Domain.Core.Entities;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 using System.Runtime.CompilerServices;
@@ -222,6 +223,7 @@ namespace Infastructure.Data.Migrations
                         principalTable: "TbDiscountTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+
                     table.ForeignKey(
                        name: "FK_TbDiscounts_TbCurrency_CurrencyId",
                        column: x => x.CurrencyId,
@@ -237,12 +239,22 @@ namespace Infastructure.Data.Migrations
                     Id = table.Column<int>(nullable: false)
                      .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ProductId = table.Column<int>(nullable: false),
+                    CustomerId = table.Column<int>(nullable: false),
                     CreatedDate = table.Column<DateTime>(nullable: false),
                     UpdatedDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TbOrder", x => new { x.Id });
+
+                    table.ForeignKey(
+                      name: "FK_TbOrder_TbCustomer_CustomerId",
+                      column: x => x.CustomerId,
+                      principalTable: "TbCustomer",
+                      principalColumn: "Id",
+                      onDelete: ReferentialAction.Cascade);
+
+
 
                 });
 
@@ -253,7 +265,7 @@ namespace Infastructure.Data.Migrations
                     Id = table.Column<int>(nullable: false)
                     .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     OrderId = table.Column<int>(nullable: false),
-                    CustomerId = table.Column<int>(nullable: false)
+                    DiscountId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -264,27 +276,15 @@ namespace Infastructure.Data.Migrations
                         principalTable: "TbOrder",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+
                     table.ForeignKey(
-                        name: "FK_TbOrderDiscount_TbCustomer_CustomerId",
-                        column: x => x.CustomerId,
-                        principalTable: "TbCustomer",
+                        name: "FK_TbOrderDiscount_TbDiscount_DiscountId",
+                        column: x => x.DiscountId,
+                        principalTable: "TbDiscount",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "TbSubscriptions",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                     .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(maxLength: 128, nullable: false),
-                    Symbol = table.Column<string>(maxLength: 10, nullable: false),
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TbSubscriptions", x => new { x.Id });
-                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -350,6 +350,24 @@ namespace Infastructure.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "TbCustomer");
+
+            migrationBuilder.DropTable(
+                name: "TbDiscountTypes");
+
+            migrationBuilder.DropTable(
+                name: "TbDiscount");
+            
+            migrationBuilder.DropTable(
+                name: "TbCurrency");
+
+            migrationBuilder.DropTable(
+               name: "TbOrder");
+            
+            migrationBuilder.DropTable(
+                name: "TbOrderDiscount");
 
         }
     }

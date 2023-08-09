@@ -1,8 +1,78 @@
-﻿@{
+﻿@using Application.Shared.ViewModels
+@{
     ViewData["Title"] = "Home Page";
+    var CustomerOrders = Model;
+    var counterOrder = 0;
+    var counterDsc = 0;
 }
-
+<style>
+    .margin30 {
+        margin: 30px;
+    }
+</style>
+@model IEnumerable<OrderVm>
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h3>Welcome to ERP Test Webapp</h3>
+    <p>Illustration of Order Item Final Price by Mock Customer Id</p>
+
+    <div class="margin30">
+        <h3>Orders</h3>
+    </div>
+    <table class="table table-striped table-hover table-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Order Id</th>
+                <th scope="col">Customer Name</th>
+                <th scope="col">Order Creation Date</th>
+                <th scope="col">Subscription (Price/Month)</th>
+                <th scope="col">Price</th>
+                <th scope="col">Final Discount Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in CustomerOrders)
+            {
+                <tr>
+                    <th scope="row">@(++counterOrder)</th>
+                    <th scope="row"> @order.Id</th>
+                    <th scope="row"> @string.Format("{0} {1}", order.Customer.LastName, order.Customer.Name)</th>
+                    <th scope="row"> @order.CreatedDate</th>
+                    <th scope="row"> 340/6</th>
+                    <th scope="row"> 340</th>
+                    <th scope="row"> @order.FinalPrice</th>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    <div class="margin30">
+        <h3>Discounts Available</h3>
+    </div>
+    <table class="table table-striped table-hover table-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Discount Name</th>
+                <th scope="col">Currency</th>
+                <th scope="col">Price</th>
+                <th scope="col">Discount Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var discount in CustomerOrders.SelectMany(x => x.Discounts))
+            {
+                <tr>
+                    <th scope="row">@(++counterDsc)</th>
+                    <th scope="row">( @discount.DiscountName )</th>
+                    
+                    <th scope="row"> @string.Format("{0} {1}", discount.Currency, discount.CurrencySymbol)</th>
+                    <th scope="row"> @string.Format("{0}", discount.Price)</th>
+                    <th scope="row"> @discount.DiscountType</th>
+                </tr>
+            }
+        </tbody>
+       
+    </table>
+    
 </div>

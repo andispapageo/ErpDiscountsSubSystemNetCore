@@ -1,3 +1,4 @@
+using Application.Shared.Config;
 using Infastructure.Data;
 using Infastructure.Persistence.Config;
 using Microsoft.EntityFrameworkCore;
@@ -6,13 +7,16 @@ using Serilog;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddInfastructureServices(builder.Configuration);
+
 builder.Services.AddControllersWithViews();
 builder.Host.UseSerilog((hostContext, services, configuration) => configuration.WriteTo.Console());
 
 var app = builder.Build();
 
 app.ApplyMigrations();
+app.ApplySeeding();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

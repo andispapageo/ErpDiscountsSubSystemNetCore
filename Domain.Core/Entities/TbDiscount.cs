@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Domain.Core.Entities
+﻿namespace Domain.Core.Entities
 {
     public partial class TbDiscount
     {
@@ -14,5 +11,6 @@ namespace Domain.Core.Entities
 
         public virtual TbCurrency Currency { get; set; } = null!;
         public virtual TbDiscountType DiscountType { get; set; } = null!;
+        public virtual ICollection<TbOrderDiscount> TbOrderDiscounts { get; set; }
     }
 }

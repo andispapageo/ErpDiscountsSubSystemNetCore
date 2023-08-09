@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Domain.Core.Entities
+﻿namespace Domain.Core.Entities
 {
     public partial class TbOrder
     {
@@ -14,7 +11,8 @@ namespace Domain.Core.Entities
         public int ProductId { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
-
+        public int CustomerId { get; set; }
+        public virtual TbCustomer Customer { get; set; } = null!;
         public virtual ICollection<TbOrderDiscount> TbOrderDiscounts { get; set; }
     }
 }

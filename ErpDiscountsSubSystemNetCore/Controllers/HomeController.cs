@@ -1,4 +1,7 @@
-﻿using ErpDiscountsSubSystemNetCore.Models;
+﻿using Application.Shared.Commands;
+using Domain.Core.Entities;
+using ErpDiscountsSubSystemNetCore.Models;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,15 +10,18 @@ namespace ErpDiscountsSubSystemNetCore.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        public IMediator Mediator { get; }
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IMediator mediator)
         {
             _logger = logger;
+            Mediator = mediator;
         }
 
-        public IActionResult Index()
+        public async Task<ActionResult<IEnumerable<TbOrder>>> Index()
         {
-            return View();
+            var getOrdersFromCustomer = await Mediator.Send(new OrderDiscountsCommand() { CustomerId = 1 });
+            return View(getOrdersFromCustomer);
         }
 
         public IActionResult Privacy()
