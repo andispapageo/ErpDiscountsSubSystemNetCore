@@ -1,7 +1,6 @@
 using Infastructure.Data;
 using Infastructure.Persistence.Config;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,9 +10,9 @@ builder.Services.AddInfastructureServices(builder.Configuration);
 builder.Services.AddControllersWithViews();
 builder.Host.UseSerilog((hostContext, services, configuration) => configuration.WriteTo.Console());
 
-
 var app = builder.Build();
 
+app.ApplyMigrations();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -37,23 +36,6 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
 app.MapRazorPages();
-
-using (var scope = app.Services.CreateScope())
-{
-    using (var appContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>())
-    {
-        try
-        {
-            appContext.Database.Migrate();
-        }
-        catch (Exception ex)
-        {
-            Log.Error(ex.Message, ex);
-            throw;
-        }
-    }
-}
-
-
 app.Run();

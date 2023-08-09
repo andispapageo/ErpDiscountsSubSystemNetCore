@@ -1,8 +1,10 @@
 ﻿using Infastructure.Data;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Serilog;
 
 namespace Infastructure.Persistence.Config
 {
@@ -19,6 +21,26 @@ namespace Infastructure.Persistence.Config
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             return services;
+        }
+
+        public static void ApplyMigrations(this WebApplication app)
+        {
+            using (var scope = app.Services.CreateScope())
+            using (var appContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>())
+            {
+                try
+                {
+                    appContext.Database.Migrate();
+                    appContext.Database.EnsureCreated();
+                    var resMigration = appContext.Seed().Result;
+                    Log.Information("Migrations and Seed are {0}", resMigration < 0 ? "not applied" : "applied successfully");
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex.Message, ex);
+                    throw;
+                }
+            }
         }
     }
 }
