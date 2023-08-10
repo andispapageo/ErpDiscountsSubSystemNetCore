@@ -118,7 +118,7 @@ namespace Infastructure.Persistence.Data.Seeding
                     order.TbSubscriptions.Add(new TbSubscription()
                     {
                         SubscriptionType = "Recurring",
-                        OrderId= order.Id,  
+                        OrderId = order.Id,
                         Price = 340,
                         DatePlan = (int)DatePlanEn.Monthly,
                         DateNum = 6

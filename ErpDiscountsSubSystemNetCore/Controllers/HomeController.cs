@@ -20,7 +20,7 @@ namespace ErpDiscountsSubSystemNetCore.Controllers
 
         public async Task<ActionResult<IEnumerable<TbOrder>>> Index()
         {
-            var getOrdersFromCustomer = await Mediator.Send(new OrderDiscountsCommand() { CustomerId = 1 });
+            var getOrdersFromCustomer = await Mediator.Send(new OrderCommand() { CustomerId = 1 });
             return View(getOrdersFromCustomer);
         }
 
