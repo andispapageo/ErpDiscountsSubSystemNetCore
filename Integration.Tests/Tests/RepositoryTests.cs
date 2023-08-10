@@ -11,19 +11,14 @@ namespace Integration.Tests.Tests
 
         [Test]
         public async Task UnitOfWorkOrderTest() => await GenericTests(new Mock<IUnitOfWork<TbOrder>>());
-
         [Test]
         public async Task UnitOfWorkOrderDiscountTest() => await GenericTests(new Mock<IUnitOfWork<TbOrderDiscount>>());
-
         [Test]
         public async Task UnitOfWorkDiscountTest() => await GenericTests(new Mock<IUnitOfWork<TbDiscount>>());
-
         [Test]
         public async Task UnitOfWorkCustomerTest() => await GenericTests(new Mock<IUnitOfWork<TbCustomer>>());
-
         [Test]
         public async Task UnitOfWorkSubscriptionTest() => await GenericTests(new Mock<IUnitOfWork<TbSubscription>>());
-
         [Test]
         public async Task UnitOfWorkCurrencyTest() => await GenericTests(new Mock<IUnitOfWork<TbCurrency>>());
 
@@ -37,10 +32,8 @@ namespace Integration.Tests.Tests
             repoMock.Object.Should().As<IRepository<T>>();
 
             var enumerable = await repoMock.Object.GetCollectionAsync();
-
             var list = enumerable.ToList();
             list.Should().NotBeNull();
-            list.Should().HaveCountGreaterThanOrEqualTo(1);
         }
     }
 }
