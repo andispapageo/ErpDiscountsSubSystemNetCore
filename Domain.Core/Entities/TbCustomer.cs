@@ -1,13 +1,14 @@
-﻿namespace Domain.Core.Entities
+﻿using Domain.Core.Entities.Base;
+
+namespace Domain.Core.Entities
 {
-    public partial class TbCustomer
+    public partial class TbCustomer : BaseEntity
     {
         public TbCustomer()
         {
             TbOrders = new HashSet<TbOrder>();
         }
 
-        public int Id { get; set; }
         public string Name { get; set; } = null!;
         public string LastName { get; set; } = null!;
         public string Address { get; set; } = null!;

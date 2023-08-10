@@ -72,9 +72,9 @@ namespace Infastructure.Persistence.Data.Seeding
                 await context.TbCustomers.AddAsync(
                     new TbCustomer()
                     {
-                        Name = "MockCustomerName",
-                        LastName = "MockLastName",
-                        Address = "MockAddress",
+                        Name = "MockCustName",
+                        LastName = "MockCustLastName",
+                        Address = "MockCustAddress",
                     });
                 await context.SaveChangesAsync();
             }
@@ -91,7 +91,9 @@ namespace Infastructure.Persistence.Data.Seeding
                         UpdatedDate = DateTime.Now,
                         ProductId = 1,
                     });
+
                     await context.SaveChangesAsync();
+
                     var order = await context.TbOrders.FirstOrDefaultAsync(x => x.CustomerId == customer.Id);
 
                     var allDiscounts = await context.TbDiscounts.ToListAsync();
@@ -111,6 +113,15 @@ namespace Infastructure.Persistence.Data.Seeding
                     {
                         OrderId = order.Id,
                         DiscountId = allDiscounts.FirstOrDefault(x => x.DiscountName == "Coupons").Id,
+                    });
+
+                    order.TbSubscriptions.Add(new TbSubscription()
+                    {
+                        SubscriptionType = "Recurring",
+                        OrderId= order.Id,  
+                        Price = 340,
+                        DatePlan = (int)DatePlanEn.Monthly,
+                        DateNum = 6
                     });
                 }
             }

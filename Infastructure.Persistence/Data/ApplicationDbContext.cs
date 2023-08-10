@@ -93,6 +93,15 @@ namespace Infastructure.Data
                     .HasForeignKey(d => d.DiscountId);
             });
 
+            modelBuilder.Entity<TbSubscription>(entity =>
+            {
+                entity.Property(e => e.SubscriptionType).HasMaxLength(128);
+
+                entity.HasOne(d => d.Order)
+                    .WithMany(p => p.TbSubscriptions)
+                    .HasForeignKey(d => d.OrderId);
+            });
+
         }
     }
 }
