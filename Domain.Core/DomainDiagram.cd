@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Domain.Core.Common.ValueObject" Collapsed="true">
+    <Position X="24.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAoAAAAAAAAAAAAIAAAAAAAACAAAA=</HashCode>
+      <FileName>Common\ValueObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Domain.Core.Entities.Base.BaseEntity" Collapsed="true">
+    <Position X="15.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Base\BaseEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Domain.Core.Entities.TbCurrency">
+    <Position X="15.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAQAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Entities\TbCurrency.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Domain.Core.Entities.TbCustomer" Collapsed="true">
+    <Position X="20" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAACCAAAAAAAAAAg=</HashCode>
+      <FileName>Entities\TbCustomer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Domain.Core.Entities.TbDiscount">
+    <Position X="8.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAwAAAAAACAAAAACACAAAAEAAAAAgAAAAAAA=</HashCode>
+      <FileName>Entities\TbDiscount.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Domain.Core.Entities.TbDiscountType">
+    <Position X="13.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\TbDiscountType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Domain.Core.Entities.TbOrder">
+    <Position X="17.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAEAAAAAAAAAAAAAAAAAAAAAAAAAAFAAggAAAAIAAAA=</HashCode>
+      <FileName>Entities\TbOrder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Domain.Core.Entities.TbOrderDiscount" Collapsed="true">
+    <Position X="22.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAEAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Entities\TbOrderDiscount.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Domain.Core.Entities.TbSubscription">
+    <Position X="11" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAEAAAAAAQAAAAAAAAAACAAAAAAAAAAAAAAAAggAAAA=</HashCode>
+      <FileName>Entities\TbSubscription.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Domain.Core.IApplicationDbContext" Collapsed="true">
+    <Position X="24.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIACAAAEAgBAAAAAAAAAAAAECAgAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IApplicationDbContext.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Domain.Core.Interfaces.IRepository&lt;T&gt;" Collapsed="true">
+    <Position X="26.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAAAgAAAAAAAAAAAAAAAAAAAAAACABAAAAAACA=</HashCode>
+      <FileName>Interfaces\IRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Domain.Core.Interfaces.IUnitOfWork&lt;T&gt;" Collapsed="true">
+    <Position X="24.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IUnitOfWork.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Domain.Core.Enums.CrudEn" Collapsed="true">
+    <Position X="24.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAgAAEAAEAAAAAAAAAAACA=</HashCode>
+      <FileName>Enums\CrudEn.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Domain.Core.Enums.CurrencyEn" Collapsed="true">
+    <Position X="26.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAQEAAAAAAAAAAAAAAEg=</HashCode>
+      <FileName>Enums\CurrencyEn.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Domain.Core.Enums.DatePlanEn" Collapsed="true">
+    <Position X="24.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAgAAAAAAgA=</HashCode>
+      <FileName>Enums\DatePlanEn.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Domain.Core.Enums.DiscountTypeEn" Collapsed="true">
+    <Position X="26.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enums\DiscountTypeEn.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
