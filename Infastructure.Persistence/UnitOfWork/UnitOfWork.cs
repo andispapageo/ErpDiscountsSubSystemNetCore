@@ -19,15 +19,16 @@ namespace Infastructure.Persistence.UnitOfWork
 
         public IRepository<T> Repository { get { return repository; } }
 
-        protected virtual void Dispose(bool disposing)
+        protected async virtual void Dispose(bool disposing)
         {
             if (!disposedValue)
             {
                 if (disposing)
                 {
-                    if (context is ApplicationDbContext)
-                        ((ApplicationDbContext)context).Dispose();
                     repository = null;
+                    if (context is ApplicationDbContext)
+                        await ((ApplicationDbContext)context).DisposeAsync();
+
                 }
             }
         }

@@ -12,6 +12,7 @@ namespace Application.Shared.ViewModels
         public DateTime UpdatedDate { get; set; }
         public CustomerVm? Customer { get; set; }
         public IEnumerable<OrderDiscountVm>? Discounts { get; set; }
+        public IEnumerable<SubscriptionVm>? Subscriptions { get; set; }
         public decimal FinalPrice { get; set; }
         public class Mapping : Profile
         {
@@ -21,27 +22,33 @@ namespace Application.Shared.ViewModels
                 CreateMap<TbOrder, OrderVm>()
                     .ForMember(d => d.Customer, opt => opt.MapFrom(s => s.Customer))
                     .ForMember(d => d.Discounts, opt => opt.MapFrom(s => s.TbOrderDiscounts))
+                    .ForMember(d => d.Subscriptions, opt => opt.MapFrom(s => s.TbSubscriptions))
                     .AfterMap((src, dest) =>
                     {
-                        dest.FinalPrice = src.TbOrderDiscounts.OrderBy(x => x.Discount.PriorityOrderId).Aggregate(360M, (x, y) =>
+                        var subcription = src.TbSubscriptions.FirstOrDefault();
+                        if (subcription != null)
                         {
-                            if (y.Discount.DiscountName == DiscountTypeEn.Percentage.ToString())
+                            dest.FinalPrice = src.TbOrderDiscounts.OrderBy(x => x.Discount.PriorityOrderId).Aggregate(subcription.Price, (x, y) =>
                             {
-                                var discount = (x * y.Discount.Price) / 100;
-                                x -= discount;
-                            }
-                            else if (y.Discount.DiscountName == DiscountTypeEn.Coupon.ToString())
-                            {
-                                x -= y.Discount.Price;
-                            }
-                            return x;
-                        });
+                                if (y.Discount.DiscountName == DiscountTypeEn.Percentage.ToString())
+                                {
+                                    var discount = (x * y.Discount.Price) / 100; //Percentage
+                                    x -= discount;
+                                }
+                                else if (y.Discount.DiscountName == DiscountTypeEn.Coupon.ToString())
+                                {
+                                    x -= y.Discount.Price;
+                                }
+                                return x;
+                            });
+                        }
                     });
 
                 //IEnumerable
                 CreateProjection<TbOrder, OrderVm>()
                     .ForMember(d => d.Customer, opt => opt.MapFrom(s => s.Customer))
-                    .ForMember(d => d.Discounts, opt => opt.MapFrom(s => s.TbOrderDiscounts));
+                    .ForMember(d => d.Discounts, opt => opt.MapFrom(s => s.TbOrderDiscounts))
+                    .ForMember(d => d.Subscriptions, opt => opt.MapFrom(s => s.TbSubscriptions));
 
             }
         }

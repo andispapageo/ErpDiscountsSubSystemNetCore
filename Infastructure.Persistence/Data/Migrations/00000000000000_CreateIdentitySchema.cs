@@ -278,7 +278,6 @@ namespace Infastructure.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-
             migrationBuilder.CreateTable(
               name: "TbSubscriptions",
               columns: table => new
@@ -287,7 +286,7 @@ namespace Infastructure.Data.Migrations
                    .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                   OrderId = table.Column<int>(nullable: false),
                   SubscriptionType = table.Column<string>(maxLength: 128, nullable: false),
-                  Price = table.Column<int>(nullable: false),
+                  Price = table.Column<decimal>(nullable: false),
                   DatePlan = table.Column<int>(nullable: false),
                   DateNum = table.Column<int>(nullable: false),
               },

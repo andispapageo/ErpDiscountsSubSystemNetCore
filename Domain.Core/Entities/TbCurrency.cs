@@ -1,13 +1,14 @@
-﻿namespace Domain.Core.Entities
+﻿using Domain.Core.Entities.Base;
+
+namespace Domain.Core.Entities
 {
-    public partial class TbCurrency
+    public partial class TbCurrency : BaseEntity
     {
         public TbCurrency()
         {
             TbDiscounts = new HashSet<TbDiscount>();
         }
 
-        public int Id { get; set; }
         public string Name { get; set; } = null!;
         public string Symbol { get; set; } = null!;
 
