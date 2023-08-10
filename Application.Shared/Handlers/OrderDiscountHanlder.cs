@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Application.Shared.Handlers
 {
-    internal class OrderDiscountHanlder : IRequestHandler<OrderDiscountsCommand, IEnumerable<OrderVm>>
+    internal class OrderDiscountHanlder : IRequestHandler<OrderCommand, IEnumerable<OrderVm>>
     {
         private readonly IUnitOfWork<TbOrder> unitOfWork;
         private readonly IMapper mapper;
@@ -21,14 +21,14 @@ namespace Application.Shared.Handlers
             this.mapper = mapper;
         }
 
-        public async Task<IEnumerable<OrderVm>> Handle(OrderDiscountsCommand request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<OrderVm>> Handle(OrderCommand request, CancellationToken cancellationToken)
         {
             var orderRes = await unitOfWork.Repository.GetQuery(x => x.CustomerId == request.CustomerId, includeProperties: "Customer,TbOrderDiscounts")
                 .ProjectTo<OrderVm>(mapper.ConfigurationProvider)
                 .OrderByDescending(x => x.Id)
                 .ToListAsync();
 
-            foreach (var item in orderRes)
+            foreach (var item in orderRes.Where(x=> x != null && x.Discounts != null))
                 item.FinalPrice = item.Discounts.OrderBy(x => x.PriorityOrderId).Aggregate(340M, (x, y) =>
                 {
                     if (y.DiscountType == DiscountTypeEn.Percentage.ToString())

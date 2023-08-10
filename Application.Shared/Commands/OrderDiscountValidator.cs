@@ -2,7 +2,7 @@
 
 namespace Application.Shared.Commands
 {
-    public class OrderDiscountValidator : AbstractValidator<OrderDiscountsCommand>
+    public class OrderDiscountValidator : AbstractValidator<OrderCommand>
     {
         public OrderDiscountValidator()
         {
