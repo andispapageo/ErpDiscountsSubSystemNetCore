@@ -1,9 +1,5 @@
-﻿using Domain.Core.Entities;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using System;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 
 namespace Infastructure.Data.Migrations
 {
@@ -253,9 +249,6 @@ namespace Infastructure.Data.Migrations
                       principalTable: "TbCustomer",
                       principalColumn: "Id",
                       onDelete: ReferentialAction.Cascade);
-
-
-
                 });
 
             migrationBuilder.CreateTable(
@@ -285,6 +278,29 @@ namespace Infastructure.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+
+            migrationBuilder.CreateTable(
+              name: "TbSubscriptions",
+              columns: table => new
+              {
+                  Id = table.Column<int>(nullable: false)
+                   .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                  OrderId = table.Column<int>(nullable: false),
+                  SubscriptionType = table.Column<string>(maxLength: 128, nullable: false),
+                  Price = table.Column<int>(nullable: false),
+                  DatePlan = table.Column<int>(nullable: false),
+                  DateNum = table.Column<int>(nullable: false),
+              },
+              constraints: table =>
+              {
+                  table.PrimaryKey("PK_TbSubscriptions", x => new { x.Id });
+                  table.ForeignKey(
+                      name: "FK_TbSubscriptions_TbOrder_OrderId",
+                      column: x => x.OrderId,
+                      principalTable: "TbOrder",
+                      principalColumn: "Id",
+                      onDelete: ReferentialAction.Cascade);
+              });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -359,13 +375,13 @@ namespace Infastructure.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "TbDiscount");
-            
+
             migrationBuilder.DropTable(
                 name: "TbCurrency");
 
             migrationBuilder.DropTable(
                name: "TbOrder");
-            
+
             migrationBuilder.DropTable(
                 name: "TbOrderDiscount");
 

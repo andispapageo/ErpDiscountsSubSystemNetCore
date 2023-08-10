@@ -11,12 +11,13 @@ namespace Application.Shared.ViewModels
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
         public CustomerVm? Customer { get; set; }
-        public IEnumerable<OrderDiscountVm> Discounts { get; set; }
+        public IEnumerable<OrderDiscountVm>? Discounts { get; set; }
         public decimal FinalPrice { get; set; }
         public class Mapping : Profile
         {
             public Mapping()
             {
+                //IQueryable
                 CreateMap<TbOrder, OrderVm>()
                     .ForMember(d => d.Customer, opt => opt.MapFrom(s => s.Customer))
                     .ForMember(d => d.Discounts, opt => opt.MapFrom(s => s.TbOrderDiscounts))
@@ -37,10 +38,11 @@ namespace Application.Shared.ViewModels
                         });
                     });
 
+                //IEnumerable
                 CreateProjection<TbOrder, OrderVm>()
                     .ForMember(d => d.Customer, opt => opt.MapFrom(s => s.Customer))
                     .ForMember(d => d.Discounts, opt => opt.MapFrom(s => s.TbOrderDiscounts));
-                    
+
             }
         }
     }

@@ -1,7 +1,5 @@
 using Application.Shared.Config;
-using Infastructure.Data;
 using Infastructure.Persistence.Config;
-using Microsoft.EntityFrameworkCore;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -2,6 +2,6 @@
 {
     public interface IUnitOfWork<T> : IDisposable where T : class
     {
-        IRepository<T> Repository { get;  }
+        IRepository<T> Repository { get; }
     }
 }

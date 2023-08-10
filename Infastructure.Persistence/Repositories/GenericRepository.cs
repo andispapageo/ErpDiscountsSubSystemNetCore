@@ -93,6 +93,6 @@ namespace Infastructure.Persistence.Repositories
             dbSet.AddAsync(entity);
         }
 
-       
+
     }
 }

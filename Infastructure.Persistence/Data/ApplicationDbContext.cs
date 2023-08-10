@@ -1,6 +1,5 @@
 ﻿using Domain.Core;
 using Domain.Core.Entities;
-using Domain.Core.Enums;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 

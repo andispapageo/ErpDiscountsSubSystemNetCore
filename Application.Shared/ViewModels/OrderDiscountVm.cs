@@ -13,7 +13,7 @@ namespace Application.Shared.ViewModels
         public string? Currency { get; set; }
         public string? CurrencySymbol { get; set; }
         public int PriorityOrderId { get; set; }
-      
+
 
         private class Mapping : Profile
         {

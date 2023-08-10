@@ -87,12 +87,12 @@ namespace Infastructure.Persistence.Data.Seeding
                     await context.TbOrders.AddAsync(new TbOrder()
                     {
                         CustomerId = customer.Id,
-                        CreatedDate= DateTime.Now,
-                        UpdatedDate= DateTime.Now,  
+                        CreatedDate = DateTime.Now,
+                        UpdatedDate = DateTime.Now,
                         ProductId = 1,
                     });
                     await context.SaveChangesAsync();
-                    var order = await context.TbOrders.FirstOrDefaultAsync(x=>x.CustomerId== customer.Id);
+                    var order = await context.TbOrders.FirstOrDefaultAsync(x => x.CustomerId == customer.Id);
 
                     var allDiscounts = await context.TbDiscounts.ToListAsync();
                     order.TbOrderDiscounts.Add(new TbOrderDiscount()

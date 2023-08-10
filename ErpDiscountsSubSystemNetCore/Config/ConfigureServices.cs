@@ -1,9 +1,4 @@
-﻿using ErpDiscountsSubSystemNetCore.Infastructure;
-using Infastructure.Data;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace ErpDiscountsSubSystemNetCore.Config
+﻿namespace ErpDiscountsSubSystemNetCore.Config
 {
     public static class ConfigureServices
     {

@@ -28,7 +28,7 @@ namespace Application.Shared.Handlers
                 .OrderByDescending(x => x.Id)
                 .ToListAsync();
 
-            foreach(var item in orderRes)
+            foreach (var item in orderRes)
                 item.FinalPrice = item.Discounts.OrderBy(x => x.PriorityOrderId).Aggregate(340M, (x, y) =>
                 {
                     if (y.DiscountType == DiscountTypeEn.Percentage.ToString())
