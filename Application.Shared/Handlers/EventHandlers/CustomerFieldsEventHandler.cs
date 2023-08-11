@@ -2,15 +2,16 @@
 using Domain.Core.Entities;
 using Domain.Core.Interfaces;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace Application.Shared.Handlers.EventHandlers
 {
-    internal class TbCustomerFieldsEvenHandler : INotificationHandler<TbCustomerFieldsEvent>
+    internal class CustomerFieldsEventHandler : INotificationHandler<TbCustomerFieldsEvent>
     {
-        private readonly ILogger<TbCustomerFieldsEvenHandler> _logger;
+        private readonly ILogger<CustomerFieldsEventHandler> _logger;
 
-        public TbCustomerFieldsEvenHandler(ILogger<TbCustomerFieldsEvenHandler> logger,
+        public CustomerFieldsEventHandler(ILogger<CustomerFieldsEventHandler> logger,
                                            IUnitOfWork<TbCustomer> uowCustomer,
                                            IUnitOfWork<TbCustomerField> uowCustomerField)
         {
@@ -25,7 +26,8 @@ namespace Application.Shared.Handlers.EventHandlers
         public async Task Handle(TbCustomerFieldsEvent notification, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Domain Event: {DomainEvent}", notification.GetType().Name);
-            foreach (var customer in UowCustomer.Repository.GetQuery())
+            var customers = await UowCustomer.Repository.GetQuery().ToListAsync();
+            foreach (var customer in customers)
             {
                 var res = await UowCustomerField.Repository.InsertOrUpdate(new TbCustomerField()
                 {
@@ -33,7 +35,7 @@ namespace Application.Shared.Handlers.EventHandlers
                     ViewId = notification.Item.Id,
                     ViewValue = null,
                 });
-                _logger.LogInformation("Domain Event TbCustomerFields {result}", res.Item2 >=0 ? "Added : Successfully" : "Not Added Successfully" );
+                _logger.LogInformation("Domain Event TbCustomerFields {result}", res.Item2 >= 0 ? "Added : Successfully" : "Not Added Successfully");
             }
         }
     }

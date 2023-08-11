@@ -1,18 +1,9 @@
-﻿using Application.Shared.Commands.DynamicFields;
-using Application.Shared.Commands.Orders;
+﻿using Application.Shared.Commands.DynamicFields.Main;
 using Application.Shared.Events;
 using Application.Shared.ViewModels;
-using AutoMapper;
 using Domain.Core.Entities;
-using Domain.Core.Enums;
 using Domain.Core.Interfaces;
 using MediatR;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Shared.Handlers.DynamicFields
 {
@@ -41,25 +32,38 @@ namespace Application.Shared.Handlers.DynamicFields
                         TypeId = 1,
                         Name = view.FieldName
                     };
-                    await UowTbView.Repository.InsertOrUpdate(entity);
+
                     entity.AddDomainEvent(new TbCustomerFieldsEvent(entity));
+                    var res = await UowTbView.Repository.InsertOrUpdate(entity);
+
+                    if (res.Item2 >= 0)
+                        await UowTbView.Repository.PublishDomain(entity);
+
+                    entity.ClearDomainEvents();
                 }
             }
 
             if (!string.IsNullOrEmpty(request.DynamicFieldsPostVm.DropdownKeyName) && (request.DynamicFieldsPostVm.DropdownValues?.Any() ?? false))
             {
-                var res = await UowTbView.Repository.InsertOrUpdate(new TbView()
+                var entity = new TbView()
                 {
                     TypeId = 2,
                     Name = request.DynamicFieldsPostVm.DropdownKeyName
-                });
+                };
 
-                if (res.Item2 <= 0) return new Result(false, default); 
+                entity.AddDomainEvent(new TbCustomerFieldsEvent(entity));
+                var res = await UowTbView.Repository.InsertOrUpdate(entity);
+
+                if (res.Item2 <= 0) return new Result(false, default);
+
+                await UowTbView.Repository.PublishDomain(entity);
+                entity.ClearDomainEvents();
+
                 foreach (var fields in request.DynamicFieldsPostVm.DropdownValues.Where(x => !string.IsNullOrEmpty(x.DropdownFieldName)))
                 {
                     await UowTbField.Repository.InsertOrUpdate(new TbField()
                     {
-                        Name = fields.DropdownFieldName,
+                        Name = fields?.DropdownFieldName ?? string.Empty,
                         ViewId = res.Item2
                     });
                 }
@@ -68,7 +72,7 @@ namespace Application.Shared.Handlers.DynamicFields
             {
 
             }
-            return  new Result(false, default);
+            return new Result(false, default);
         }
     }
 }

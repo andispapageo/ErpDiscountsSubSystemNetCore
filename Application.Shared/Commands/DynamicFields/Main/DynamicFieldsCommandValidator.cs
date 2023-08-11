@@ -3,7 +3,7 @@ using Domain.Core.Entities;
 using Domain.Core.Interfaces;
 using FluentValidation;
 
-namespace Application.Shared.Commands.DynamicFields
+namespace Application.Shared.Commands.DynamicFields.Main
 {
     public class DynamicFieldsCommandValidator : AbstractValidator<DynamicFieldsCommand>
     {

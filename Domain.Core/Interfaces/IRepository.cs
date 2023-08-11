@@ -1,9 +1,9 @@
-﻿using Domain.Core.Enums;
+﻿using Domain.Core.Entities.Base;
+using Domain.Core.Enums;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
 using Serilog;
-using Domain.Core.Entities.Base;
+using System.Linq.Expressions;
 
 namespace Domain.Core.Interfaces
 {
@@ -16,6 +16,7 @@ namespace Domain.Core.Interfaces
         public Task<(CrudEn, int)> InsertOrUpdate(T entity);
         public void Insert(T entity);
         public void Update(T entity);
+        Task PublishDomain(T entity);
         IMediator mediator { get; set; }
         ILogger logger { get; set; }
     }

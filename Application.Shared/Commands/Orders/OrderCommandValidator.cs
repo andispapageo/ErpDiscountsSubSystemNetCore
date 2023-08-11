@@ -2,7 +2,7 @@
 
 namespace Application.Shared.Commands.Orders
 {
-    public class OrderCommandValidator : AbstractValidator<OrderCommand>
+    public class OrderCommandValidator : AbstractValidator<InheritorPresenterCommand>
     {
         public OrderCommandValidator()
         {

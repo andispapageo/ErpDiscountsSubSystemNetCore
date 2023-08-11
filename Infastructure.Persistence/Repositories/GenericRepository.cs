@@ -63,20 +63,21 @@ namespace Infastructure.Persistence.Repositories
                 enumRes = CrudEn.Create;
                 Insert(entity);
             }
+            return (enumRes, await ((ApplicationDbContext)Context).SaveChangesAsync());
+        }
 
-            var tupleRes = (enumRes, await ((ApplicationDbContext)Context).SaveChangesAsync());
+        public async Task PublishDomain(TEntity entity)
+        {
             try
             {
                 foreach (var dEvent in entity.DomainEvents)
                     await mediator.Publish(dEvent);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 logger.Error(ex.Message, ex);
             }
-            return tupleRes;
         }
-
         public async Task<TEntity> GetById(object id) => await dbSet.FindAsync(id);
 
         public void Update(TEntity entity)

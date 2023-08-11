@@ -27,7 +27,7 @@ namespace Infastructure.Persistence.Data.Seeding
 
             if (context.TbViewTypes.Count() == 0)
             {
-                await context.TbViewTypes.AddAsync(new TbViewType() { TypeName = "SimpleField"});
+                await context.TbViewTypes.AddAsync(new TbViewType() { TypeName = "SimpleField" });
                 await context.TbViewTypes.AddAsync(new TbViewType() { TypeName = "DropdownLists" });
                 await context.SaveChangesAsync();
             }

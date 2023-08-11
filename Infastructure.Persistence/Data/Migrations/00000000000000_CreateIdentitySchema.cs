@@ -209,6 +209,7 @@ namespace Infastructure.Data.Migrations
                     Price = table.Column<decimal>(nullable: false),
                     CurrencyId = table.Column<int>(nullable: false),
                     PriorityOrderId = table.Column<int>(nullable: false)
+                    //(..)
                 },
                 constraints: table =>
                 {
@@ -238,6 +239,7 @@ namespace Infastructure.Data.Migrations
                     CustomerId = table.Column<int>(nullable: false),
                     CreatedDate = table.Column<DateTime>(nullable: false),
                     UpdatedDate = table.Column<DateTime>(nullable: false)
+                    //(..)
                 },
                 constraints: table =>
                 {
@@ -364,7 +366,7 @@ namespace Infastructure.Data.Migrations
                    .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                   CustomerId = table.Column<int>(nullable: false),
                   ViewId = table.Column<int>(nullable: false),
-                  ViewValue = table.Column<string>(maxLength: 128, nullable: false),
+                  ViewValue = table.Column<string>(maxLength: 208, nullable: true),
               },
               constraints: table =>
               {

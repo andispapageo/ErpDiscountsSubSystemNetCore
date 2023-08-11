@@ -1,6 +1,4 @@
 ﻿using Domain.Core.Entities.Base;
-using System;
-using System.Collections.Generic;
 
 namespace Domain.Core.Entities
 {

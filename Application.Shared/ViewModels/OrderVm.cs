@@ -11,9 +11,10 @@ namespace Application.Shared.ViewModels
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
         public CustomerVm? Customer { get; set; }
+        public decimal FinalPrice { get; set; }
         public IEnumerable<OrderDiscountVm>? Discounts { get; set; }
         public IEnumerable<SubscriptionVm>? Subscriptions { get; set; }
-        public decimal FinalPrice { get; set; }
+
         public class Mapping : Profile
         {
             public Mapping()
@@ -28,7 +29,7 @@ namespace Application.Shared.ViewModels
                         var subcription = src.TbSubscriptions.FirstOrDefault();
                         if (subcription != null)
                         {
-                            
+
                             dest.FinalPrice = src.TbOrderDiscounts.OrderBy(x => x.Discount.PriorityOrderId).Aggregate(subcription.Price, (x, y) =>
                             {
                                 if (y.Discount.DiscountName == DiscountTypeEn.Percentage.ToString())
@@ -36,10 +37,7 @@ namespace Application.Shared.ViewModels
                                     var discount = (x * y.Discount.Price) / 100; //Percentage
                                     x -= discount;
                                 }
-                                else if (y.Discount.DiscountName == DiscountTypeEn.Coupon.ToString())
-                                {
-                                    x -= y.Discount.Price;
-                                }
+                                else if (y.Discount.DiscountName == DiscountTypeEn.Coupon.ToString()) x -= y.Discount.Price;
                                 return x;
                             });
                         }

@@ -3,8 +3,7 @@ using MediatR;
 
 namespace Application.Shared.Commands.Orders
 {
-
-    public record OrderCommand : IRequest<IEnumerable<OrderVm>>
+    public record InheritorPresenterCommand : IRequest<InheritorPresenterVm>
     {
         public int? CustomerId { get; init; }
     }

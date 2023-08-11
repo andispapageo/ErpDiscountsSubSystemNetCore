@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Domain.Core.Entities;
-using Domain.Core.Enums;
 
 namespace Application.Shared.ViewModels
 {

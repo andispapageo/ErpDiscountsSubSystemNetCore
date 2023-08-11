@@ -1,28 +1,30 @@
 ﻿@using Application.Shared.ViewModels
+@using Application.Shared.ViewModels.DynamicFields
+@model InheritorPresenterVm
 @{
     ViewData["Title"] = "Home Page";
-    var CustomerOrders = Model;
+    var CustomerOrders = Model.OrderVms;
+    var CustomerDynamicFields = Model.CustomerFields;
     var counterOrder = 0;
     var counterDsc = 0;
 }
 <style>
     .marginCst {
-        margin: 40px 0px;
-        color:dodgerblue
+        margin: 38px 0px;
+        color: dodgerblue
     }
 </style>
-@model IEnumerable<OrderVm>
+
 <div class="text-center">
     <h3>Welcome to ERP</h3>
     <hr />
     <p>Illustration of subscription order with final discount price for a mocked customer, presented with tables.</p>
     <p>In order to create additional subscriptions, or dynamic views please register an In.</p>
-    <hr />
 </div>
 <div class="">
 
     <div class="marginCst">
-        <h5 >Orders</h5>
+        <h5>Orders</h5>
     </div>
     <table class="table table-striped table-hover table-sm">
         <thead class="thead-dark">
@@ -53,7 +55,6 @@
 
         </tbody>
     </table>
-    <hr />
     <div class="marginCst">
         <h5>Discounts Available</h5>
     </div>
@@ -68,7 +69,6 @@
             </tr>
         </thead>
         <tbody>
-
             @foreach (var discount in CustomerOrders.Where(x => x.Discounts != null).SelectMany(x => x.Discounts))
             {
 
@@ -81,7 +81,36 @@
                 </tr>
             }
         </tbody>
-
     </table>
-
+    <hr />
+    <div class="marginCst">
+        <h5>Dynamic Fields Customer</h5>
+    </div>
+    <form method="post" asp-controller="Home" asp-action="OnPostFields">
+        <div class="row" style="justify-content: center;">
+            <hr />
+            <table class="table table-striped table-hover table-sm">
+                <tbody>
+                    @{
+                        var countField = 0;
+                    }
+                    @foreach (var custFields in CustomerDynamicFields)
+                    {
+                        @Html.HiddenFor(m=>m.CustomerFields[countField].ViewId)
+                        @Html.HiddenFor(m=>m.CustomerFields[countField].ViewTypeId)
+                        @Html.HiddenFor(m=>m.CustomerFields[countField].CustomerId)
+                        <tr>
+                            <td>@custFields.ViewName: </td>
+                            <td>
+                                @Html.TextBoxFor(m=>m.CustomerFields[countField].ViewValue)
+                            </td>
+                        </tr>
+                        countField++;
+                    }
+                </tbody>
+            </table>
+            <hr />
+        </div>
+        <input type="submit" class="btn btn-primary" style="width:20%;" value="Save Fields" />
+    </form>
 </div>
