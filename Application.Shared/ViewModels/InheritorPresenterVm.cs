@@ -5,9 +5,8 @@ namespace Application.Shared.ViewModels
 {
     public class InheritorPresenterVm
     {
+        public List<OrderVm>? OrderVms { get; set; }
         [Required]
-        public List<OrderVm> OrderVms { get; set; }
-        [Required]
-        public List<CustomerFieldsVm> CustomerFields { get; set; }
+        public List<CustomerFieldsVm>? CustomerFields { get; set; }
     }
 }

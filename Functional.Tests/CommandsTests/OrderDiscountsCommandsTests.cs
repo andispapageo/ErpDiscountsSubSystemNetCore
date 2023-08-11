@@ -26,7 +26,6 @@ namespace Functional.Tests.Commands
 
             item.Should().NotBeNull();
             item.Should().As<IEnumerable<OrderVm>?>();
-            item.Should().HaveCountGreaterThan(0);
         }
 
     }

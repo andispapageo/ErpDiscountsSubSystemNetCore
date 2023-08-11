@@ -1,4 +1,5 @@
 ﻿using Domain.Core.Common;
+using MediatR;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Core.Entities.Base
@@ -9,6 +10,7 @@ namespace Domain.Core.Entities.Base
         private readonly List<BaseEvent> _domainEvents = new();
         [NotMapped]
         public IReadOnlyCollection<BaseEvent> DomainEvents => _domainEvents.AsReadOnly();
+
         public void AddDomainEvent(BaseEvent domainEvent)
         {
             _domainEvents.Add(domainEvent);

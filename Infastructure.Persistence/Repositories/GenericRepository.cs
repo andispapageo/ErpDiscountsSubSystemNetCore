@@ -87,6 +87,15 @@ namespace Infastructure.Persistence.Repositories
             entry.State = EntityState.Modified;
         }
 
+        public async Task<int> UpdateAsync(TEntity entity)
+        {
+            if (entity == null) return -1;
+            dbSet.Attach(entity);
+            var entry = ((ApplicationDbContext)Context).Entry<TEntity>(entity);
+            entry.State = EntityState.Modified;
+            return await ((ApplicationDbContext)Context).SaveChangesAsync();
+        }
+
         public virtual void Insert(TEntity entity)
         {
             dbSet.AddAsync(entity);

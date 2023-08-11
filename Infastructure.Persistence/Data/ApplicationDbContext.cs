@@ -20,6 +20,7 @@ namespace Infastructure.Data
         public virtual DbSet<TbView> TbViews { get; set; } = null!;
         public virtual DbSet<TbField> TbFields { get; set; } = null!;
         public virtual DbSet<TbViewType> TbViewTypes { get; set; } = null!;
+        public virtual DbSet<TbCustomerFieldsHistory> TbCustomerFieldsHistories { get; set; } = null!;
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -149,6 +150,24 @@ namespace Infastructure.Data
 
                 entity.Property(e => e.TypeName).HasMaxLength(128);
             });
+
+            modelBuilder.Entity<TbCustomerFieldsHistory>(entity =>
+            {
+                entity.ToTable("TbCustomerFieldsHistory");
+
+                entity.Property(e => e.NewViewValue).HasMaxLength(208);
+
+                entity.Property(e => e.OldViewValue).HasMaxLength(208);
+
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.TbCustomerFieldsHistories)
+                    .HasForeignKey(d => d.CustomerId);
+
+                entity.HasOne(d => d.View)
+                    .WithMany(p => p.TbCustomerFieldsHistories)
+                    .HasForeignKey(d => d.ViewId);
+            });
+
             OnModelCreatingPartial(modelBuilder);
         }
 

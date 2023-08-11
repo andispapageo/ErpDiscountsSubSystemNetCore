@@ -386,6 +386,37 @@ namespace Infastructure.Data.Migrations
                     onDelete: ReferentialAction.Cascade);
               });
 
+            migrationBuilder.CreateTable(
+              name: "TbCustomerFieldsHistory",
+              columns: table => new
+              {
+                  Id = table.Column<int>(nullable: false)
+                   .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                  CustomerId = table.Column<int>(nullable: false),
+                  ViewId = table.Column<int>(nullable: false),
+                  OldViewValue = table.Column<string>(maxLength: 208, nullable: true),
+                  NewViewValue = table.Column<string>(maxLength: 208, nullable: true),
+                  UpdateDate = table.Column<DateTime>(nullable: false),
+                  //(..)
+              },
+              constraints: table =>
+              {
+                  table.PrimaryKey("PK_TbCustomerFieldsHistory", x => new { x.Id });
+                  table.ForeignKey(
+                    name: "FK_TbCustomerFieldsHistory_TbView_ViewId",
+                    column: x => x.ViewId,
+                    principalTable: "TbView",
+                    principalColumn: "Id",
+                    onDelete: ReferentialAction.Cascade);
+
+                  table.ForeignKey(
+                    name: "FK_TbCustomerFieldsHistory_TbCustomer_CustomerId",
+                    column: x => x.CustomerId,
+                    principalTable: "TbCustomer",
+                    principalColumn: "Id",
+                    onDelete: ReferentialAction.Cascade);
+              });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",

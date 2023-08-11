@@ -5,11 +5,10 @@ using Domain.Core.Entities;
 using Domain.Core.Interfaces;
 using MediatR;
 
-namespace Application.Shared.Handlers.DynamicFields
+namespace Application.Shared.Handlers.DynamicFields.Main
 {
     internal class DynamicFieldsCommandHandler : IRequestHandler<DynamicFieldsCommand, Result>
     {
-
         public DynamicFieldsCommandHandler(
             IUnitOfWork<TbView> uowTbView,
             IUnitOfWork<TbField> uowTbField)

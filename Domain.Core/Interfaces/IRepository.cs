@@ -16,6 +16,7 @@ namespace Domain.Core.Interfaces
         public Task<(CrudEn, int)> InsertOrUpdate(T entity);
         public void Insert(T entity);
         public void Update(T entity);
+        public Task<int> UpdateAsync(T entity);
         Task PublishDomain(T entity);
         IMediator mediator { get; set; }
         ILogger logger { get; set; }

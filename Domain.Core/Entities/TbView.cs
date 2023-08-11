@@ -8,6 +8,7 @@ namespace Domain.Core.Entities
         {
             TbCustomerFields = new HashSet<TbCustomerField>();
             TbFields = new HashSet<TbField>();
+            TbCustomerFieldsHistories = new HashSet<TbCustomerFieldsHistory>();
         }
 
         public int TypeId { get; set; }
@@ -15,5 +16,6 @@ namespace Domain.Core.Entities
         public virtual TbViewType Type { get; set; } = null!;
         public virtual ICollection<TbCustomerField> TbCustomerFields { get; set; }
         public virtual ICollection<TbField> TbFields { get; set; }
+        public virtual ICollection<TbCustomerFieldsHistory> TbCustomerFieldsHistories { get; set; }
     }
 }

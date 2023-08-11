@@ -1,4 +1,5 @@
-﻿using Application.Shared.Commands.Orders;
+﻿using Application.Shared.Commands.DynamicFields.Customer;
+using Application.Shared.Commands.Orders;
 using Application.Shared.ViewModels;
 using Domain.Core.Entities;
 using ErpDiscountsSubSystemNetCore.Models;
@@ -27,7 +28,7 @@ namespace ErpDiscountsSubSystemNetCore.Controllers
         {
             if (ModelState.IsValid)
             {
-                var resRequest = await mediator.Send()
+                var resRequest = await mediator.Send(new CustomerPostDynamicHistoryFieldsCommand() { CustomerFieldsVms = inheritorPresenterVm.CustomerFields });
             }
             return View();
         }
