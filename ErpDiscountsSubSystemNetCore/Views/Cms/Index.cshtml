@@ -3,18 +3,26 @@
 *@
 @{
 }
-
+@model Application.Shared.ViewModels.TextAreaFields.DynamicFieldsPostVm
 <div class="text-center">
     <hr />
     <p>In order to add or remove fields for each customer please select add.</p>
     <hr />
     <div class="text-center">
         <button id="addSingleRow" type="button" class="btn btn-dark" style="width:20%; margin:20px">Add Simple Field Price</button>
-        <button id="addDropdownRow" type="button" class="btn btn-dark" style="width:20%; margin:20px">Add Dropdown </button>
+        <button id="addDropdownRow" type="button" class="btn btn-dark" style="width:20%; margin:20px">Add Dropdown main/fields </button>
         <form method="post" asp-controller="Cms" asp-action="OnPost">
-            <div id="newRow">
-                <input type="hidden" id="total" value="0" />
+            <div class="row" style="justify-content: center;">
+                <div class="col-4" id="newRowSimpleText">
+                    <input type="hidden" id="total" value="0" />
+                </div>
+                <div class="col-4" id="newRowDropDown">
+                    <input type="hidden" id="totalD" value="0" />
+                    <input type="hidden" id="totalF" value="0" />
+                </div>
             </div>
+
+
             <input type="submit" class="btn btn-primary" style="width:30%; margin:40px" value="Post" />
         </form>
     </div>
@@ -29,32 +37,44 @@
             $("#total").val(rowCount);
             var html = '';
             html += '<div id="inputRow" style="margin:5px">';
-            html += '<input type="hidden" name="[' + (rowCount - 1) + '].Type" value= "1"  />';
-            html += '<input type="text" placeholder="e.g: Email" name="[' + (rowCount - 1) + '].FieldName"  />';
+            html += '<input type="text" placeholder="e.g: Email" name="AvailableTextFields[' + (rowCount - 1) + '].FieldName"  />';
             //add more inputs here...
             html += '<button id="removeRow" type="button" class="btn btn-danger">Remove</button>';
             html += '</div>';
 
-            $('#newRow').append(html);
+            $('#newRowSimpleText').append(html);
         });
+
         $("#addDropdownRow").click(function () {
-            var rowCount = parseInt($("#total").val());
+            var rowCount = parseInt($("#totalD").val());
             rowCount++;
-            $("#total").val(rowCount);
+            $("#totalD").val(rowCount);
             var html = '';
-            html += '<div id="inputRow" style="margin:5px">';
-            html += '<input type="text" name="[' + (rowCount - 1) + '].Name"  />';
-            //add more inputs here...
-            html += '<button id="removeRow" type="button" class="btn btn-danger">Remove</button>';
+            html += '<div id="inputRowD" style="margin:5px">';
+            if(rowCount == 1){
+             html += '<div> DropDown Name</div>'
+             html += '<input type="text" placeholder="e.g: Countries" name="DropdownName"  />';
+               
+            }
+            else{
+                html += '<input style="width:40%"  type="text" placeholder="e.g: Dropdown Field" name="DropdownValues[' + (rowCount - 2) + '].DropdownFieldName"  />';
+            }
+            html += '<button id="removeRowD" type="button" class="btn btn-danger">Remove</button>';
             html += '</div>';
 
-            $('#newRow').append(html);
+            $('#newRowDropDown').append(html);
         });
         $(document).on('click', '#removeRow', function () {
             var rowCount = parseInt($("#total").val());
             rowCount--;
             $("#total").val(rowCount);
             $(this).closest('#inputRow').remove();
+        });
+        $(document).on('click', '#removeRowD', function () {
+            var rowCount = parseInt($("#totalD").val());
+            rowCount--;
+            $("#totalD").val(rowCount);
+            $(this).closest('#inputRowD').remove();
         });
     </script>
 }

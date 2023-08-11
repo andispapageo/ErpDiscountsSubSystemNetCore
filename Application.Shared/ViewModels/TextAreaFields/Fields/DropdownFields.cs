@@ -2,7 +2,6 @@
 {
     public class DropdownFields 
     {
-        public string DropdownName { get; set; }
-        public IEnumerable<DropdownItems> DropdownItems { get; set; }
+        public string DropdownFieldName { get; set; }
     }
 }

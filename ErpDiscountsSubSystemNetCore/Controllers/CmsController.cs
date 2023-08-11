@@ -21,12 +21,12 @@ namespace ErpDiscountsSubSystemNetCore.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            return View(new DynamicFieldsPostVm());
         }
 
 
         [HttpPost]
-        public void OnPost(IEnumerable<DynamicFieldsVm> dynamicFieldsVms)
+        public void OnPost(DynamicFieldsPostVm dynamicFieldsPostVm)
         {
            
         }
