@@ -8,20 +8,21 @@
 <style>
     .marginCst {
         margin: 40px 0px;
+        color:dodgerblue
     }
 </style>
 @model IEnumerable<OrderVm>
 <div class="text-center">
-    <h3>Welcome to ERP Webapp</h3>
+    <h3>Welcome to ERP</h3>
     <hr />
     <p>Illustration of subscription order with final discount price for a mocked customer, presented with tables.</p>
-    <p>In order to create additional subscriptions please register.</p>
+    <p>In order to create additional subscriptions, or dynamic views please register an In.</p>
     <hr />
 </div>
 <div class="">
 
     <div class="marginCst">
-        <h4>Orders</h4>
+        <h5 >Orders</h5>
     </div>
     <table class="table table-striped table-hover table-sm">
         <thead class="thead-dark">
@@ -32,7 +33,7 @@
                 <th scope="col">Order dreation date</th>
                 <th scope="col">Subscription </th>
                 <th scope="col">Price</th>
-                <th scope="col">Final discount price</th>
+                <th scope="col" style="color:dodgerblue">Final discount price</th>
             </tr>
         </thead>
         <tbody>
@@ -46,7 +47,7 @@
                     <th scope="row"> @order.CreatedDate</th>
                     <th scope="row"> @string.Format("{0} / {1}", subscriptionVm?.Price ?? 0 , subscriptionVm?.DateNum )</th>
                     <th scope="row"> @(subscriptionVm?.Price ?? 0)</th>
-                    <th scope="row"> @order.FinalPrice </th>
+                    <th scope="row" style="color:dodgerblue"> @order.FinalPrice </th>
                 </tr>
             }
 
@@ -73,7 +74,7 @@
 
                 <tr>
                     <th scope="row">@(++counterDsc)</th>
-                    <th scope="row">( @discount.DiscountName )</th>
+                    <th scope="row">( @discount.DiscountName)</th>
                     <th scope="row"> @string.Format("{0} {1}", discount.Currency, discount.CurrencySymbol)</th>
                     <th scope="row"> @string.Format("{0}", discount.Price)</th>
                     <th scope="row"> @discount.DiscountType</th>

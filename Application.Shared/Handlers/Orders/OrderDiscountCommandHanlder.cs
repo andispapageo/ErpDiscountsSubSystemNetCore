@@ -1,4 +1,4 @@
-﻿using Application.Shared.Commands;
+﻿using Application.Shared.Commands.Orders;
 using Application.Shared.ViewModels;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
@@ -8,14 +8,14 @@ using Domain.Core.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.Shared.Handlers
+namespace Application.Shared.Handlers.Orders
 {
-    internal class OrderDiscountHanlder : IRequestHandler<OrderCommand, IEnumerable<OrderVm>>
+    internal class OrderDiscountCommandHanlder : IRequestHandler<OrderCommand, IEnumerable<OrderVm>>
     {
         private readonly IUnitOfWork<TbOrder> unitOfWork;
         private readonly IMapper mapper;
 
-        public OrderDiscountHanlder(IUnitOfWork<TbOrder> unitOfWork, IMapper mapper)
+        public OrderDiscountCommandHanlder(IUnitOfWork<TbOrder> unitOfWork, IMapper mapper)
         {
             this.unitOfWork = unitOfWork;
             this.mapper = mapper;
@@ -28,12 +28,12 @@ namespace Application.Shared.Handlers
                 .OrderByDescending(x => x.Id)
                 .ToListAsync();
 
-            foreach (var item in orderRes.Where(x=> x != null && x.Discounts != null))
+            foreach (var item in orderRes.Where(x => x != null && x.Discounts != null))
                 item.FinalPrice = item.Discounts.OrderBy(x => x.PriorityOrderId).Aggregate(340M, (x, y) =>
                 {
                     if (y.DiscountType == DiscountTypeEn.Percentage.ToString())
                     {
-                        var discount = (x * y.Price) / 100;
+                        var discount = x * y.Price / 100;
                         x -= discount;
                     }
                     else if (y.DiscountType == DiscountTypeEn.Coupon.ToString())

@@ -28,6 +28,7 @@ namespace Application.Shared.ViewModels
                         var subcription = src.TbSubscriptions.FirstOrDefault();
                         if (subcription != null)
                         {
+                            
                             dest.FinalPrice = src.TbOrderDiscounts.OrderBy(x => x.Discount.PriorityOrderId).Aggregate(subcription.Price, (x, y) =>
                             {
                                 if (y.Discount.DiscountName == DiscountTypeEn.Percentage.ToString())

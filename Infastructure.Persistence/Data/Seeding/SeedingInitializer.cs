@@ -17,10 +17,18 @@ namespace Infastructure.Persistence.Data.Seeding
         public async Task<int> Seed()
         {
             int setup = -1;
+
             if (context.TbDiscountTypes.Count() == 0)
             {
                 await context.TbDiscountTypes.AddAsync(new TbDiscountType() { DiscountType = DiscountTypeEn.Percentage.ToString() });
                 await context.TbDiscountTypes.AddAsync(new TbDiscountType() { DiscountType = DiscountTypeEn.Coupon.ToString() });
+                await context.SaveChangesAsync();
+            }
+
+            if (context.TbViewTypes.Count() == 0)
+            {
+                await context.TbViewTypes.AddAsync(new TbViewType() { TypeName = "SimpleField"});
+                await context.TbViewTypes.AddAsync(new TbViewType() { TypeName = "DropdownLists" });
                 await context.SaveChangesAsync();
             }
 
@@ -69,19 +77,18 @@ namespace Infastructure.Persistence.Data.Seeding
 
             if (context.TbCustomers.Count() == 0)
             {
-                await context.TbCustomers.AddAsync(
-                    new TbCustomer()
-                    {
-                        Name = "MockCustName",
-                        LastName = "MockCustLastName",
-                        Address = "MockCustAddress",
-                    });
+                await context.TbCustomers.AddAsync(new TbCustomer()
+                {
+                    Name = "MockCustName",
+                    LastName = "MockCustLastName",
+                    Address = "MockCustAddress",
+                });
                 await context.SaveChangesAsync();
             }
 
             if (context.TbOrders.Count() == 0)
             {
-                var customer = await context.TbCustomers.FirstOrDefaultAsync(x => x.Name == "MockCustomerName");
+                var customer = await context.TbCustomers.FirstOrDefaultAsync(x => x.Name == "MockCustName");
                 if (customer != null)
                 {
                     await context.TbOrders.AddAsync(new TbOrder()

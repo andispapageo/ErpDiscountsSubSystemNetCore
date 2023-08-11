@@ -301,6 +301,89 @@ namespace Infastructure.Data.Migrations
                       onDelete: ReferentialAction.Cascade);
               });
 
+            migrationBuilder.CreateTable(
+              name: "TbViewType",
+              columns: table => new
+              {
+                  Id = table.Column<int>(nullable: false)
+                   .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                  TypeName = table.Column<string>(maxLength: 128, nullable: false),
+              },
+              constraints: table =>
+              {
+                  table.PrimaryKey("PK_TbViewType", x => new { x.Id });
+
+              });
+
+            migrationBuilder.CreateTable(
+              name: "TbView",
+              columns: table => new
+              {
+                  Id = table.Column<int>(nullable: false)
+                   .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                  TypeId = table.Column<int>(nullable: false),
+                  Name = table.Column<string>(maxLength: 128, nullable: false),
+              },
+              constraints: table =>
+              {
+                  table.PrimaryKey("PK_TbView", x => new { x.Id });
+                  table.ForeignKey(
+                   name: "FK_TbView_TbType_TypeId",
+                   column: x => x.TypeId,
+                   principalTable: "TbViewType",
+                   principalColumn: "Id",
+                   onDelete: ReferentialAction.Cascade);
+
+              });
+
+            migrationBuilder.CreateTable(
+              name: "TbField",
+              columns: table => new
+              {
+                  Id = table.Column<int>(nullable: false)
+                   .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                  ViewId = table.Column<int>(nullable: false),
+                  Name = table.Column<string>(maxLength: 128, nullable: false),
+              },
+              constraints: table =>
+              {
+                  table.PrimaryKey("PK_TbField", x => new { x.Id });
+                  table.ForeignKey(
+                    name: "FK_TbField_TbView_ViewId",
+                    column: x => x.ViewId,
+                    principalTable: "TbView",
+                    principalColumn: "Id",
+                    onDelete: ReferentialAction.Cascade);
+              });
+
+            migrationBuilder.CreateTable(
+              name: "TbCustomerFields",
+              columns: table => new
+              {
+                  Id = table.Column<int>(nullable: false)
+                   .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                  CustomerId = table.Column<int>(nullable: false),
+                  ViewId = table.Column<int>(nullable: false),
+                  ViewValue = table.Column<string>(maxLength: 128, nullable: false),
+              },
+              constraints: table =>
+              {
+                  table.PrimaryKey("PK_TbCustomerFields", x => new { x.Id });
+                  table.ForeignKey(
+                    name: "FK_TbCustomerFields_TbView_ViewId",
+                    column: x => x.ViewId,
+                    principalTable: "TbView",
+                    principalColumn: "Id",
+                    onDelete: ReferentialAction.Cascade);
+
+                  table.ForeignKey(
+                    name: "FK_TbCustomerFields_TbCustomer_CustomerId",
+                    column: x => x.CustomerId,
+                    principalTable: "TbCustomer",
+                    principalColumn: "Id",
+                    onDelete: ReferentialAction.Cascade);
+              });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",

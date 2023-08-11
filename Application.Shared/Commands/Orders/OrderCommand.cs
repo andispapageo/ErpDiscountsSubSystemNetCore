@@ -1,7 +1,7 @@
 ﻿using Application.Shared.ViewModels;
 using MediatR;
 
-namespace Application.Shared.Commands
+namespace Application.Shared.Commands.Orders
 {
 
     public record OrderCommand : IRequest<IEnumerable<OrderVm>>

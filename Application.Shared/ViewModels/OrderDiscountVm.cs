@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Domain.Core.Entities;
+using Domain.Core.Enums;
 
 namespace Application.Shared.ViewModels
 {
@@ -10,6 +11,7 @@ namespace Application.Shared.ViewModels
         public string DiscountName { get; set; } = null!;
         public string DiscountType { get; set; } = null!;
         public decimal Price { get; set; }
+        public decimal DeductedPrice { get; set; }
         public string? Currency { get; set; }
         public string? CurrencySymbol { get; set; }
         public int PriorityOrderId { get; set; }

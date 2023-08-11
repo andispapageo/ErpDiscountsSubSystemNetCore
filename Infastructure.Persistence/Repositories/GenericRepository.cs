@@ -1,16 +1,22 @@
 ﻿using Domain.Core;
+using Domain.Core.Entities.Base;
 using Domain.Core.Enums;
 using Domain.Core.Interfaces;
 using Infastructure.Data;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 using System.Linq.Expressions;
 
 namespace Infastructure.Persistence.Repositories
 {
-    public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
     {
-        public DbSet<TEntity> dbSet { get; set; }
-        public IApplicationDbContext Context { get; set; }
+        public DbSet<TEntity>? dbSet { get; set; }
+        public IApplicationDbContext? Context { get; set; }
+        public IMediator mediator { get; set; }
+        public ILogger logger { get; set; }
+
         public async Task<IEnumerable<TEntity>> GetCollectionAsync(Expression<Func<TEntity, bool>>? filter = null,
                                                              Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
                                                              string includeProperties = "")
@@ -58,13 +64,20 @@ namespace Infastructure.Persistence.Repositories
                 Insert(entity);
             }
 
-            return (enumRes, await ((ApplicationDbContext)Context).SaveChangesAsync());
+            var tupleRes = (enumRes, await ((ApplicationDbContext)Context).SaveChangesAsync());
+            try
+            {
+                foreach (var dEvent in entity.DomainEvents)
+                    await mediator.Publish(dEvent);
+            }
+            catch(Exception ex)
+            {
+                logger.Error(ex.Message, ex);
+            }
+            return tupleRes;
         }
 
-        public async Task<TEntity> GetById(object id)
-        {
-            return await dbSet.FindAsync(id);
-        }
+        public async Task<TEntity> GetById(object id) => await dbSet.FindAsync(id);
 
         public void Update(TEntity entity)
         {

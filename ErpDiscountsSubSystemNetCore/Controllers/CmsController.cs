@@ -1,4 +1,6 @@
-﻿using Application.Shared.ViewModels.TextAreaFields;
+﻿using Application.Shared.Commands.DynamicFields;
+using Application.Shared.ViewModels;
+using Application.Shared.ViewModels.TextAreaFields;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -8,13 +10,10 @@ namespace ErpDiscountsSubSystemNetCore.Controllers
     [Authorize]
     public class CmsController : Controller
     {
-        public CmsController(ILogger<CmsController> logger, IMediator mediator)
+        public CmsController(IMediator mediator)
         {
-            Logger = logger;
             Mediator = mediator;
         }
-
-        ILogger<CmsController> Logger { get; }
         IMediator Mediator { get; }
 
 
@@ -26,9 +25,18 @@ namespace ErpDiscountsSubSystemNetCore.Controllers
 
 
         [HttpPost]
-        public void OnPost(DynamicFieldsPostVm dynamicFieldsPostVm)
+        public async Task<ActionResult<object>> OnPost(DynamicFieldsPostVm dynamicFieldsPostVm)
         {
-           
+            try
+            {
+                var saveRequestResult = await Mediator.Send(new DynamicFieldsCommand() { DynamicFieldsPostVm = dynamicFieldsPostVm });
+                return View(new DynamicFieldsPostVm() { Result = saveRequestResult });
+            }
+            catch (Exception ex)
+            {
+                var result = new Result(false, new[] { ex.Message });
+                return View(new DynamicFieldsPostVm() { Result = result });
+            }
         }
     }
 }
