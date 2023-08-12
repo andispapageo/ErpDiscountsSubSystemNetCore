@@ -12,9 +12,13 @@ Windows based MVC website based on functional(db) with MSSQL services oriented.<
 <br/>
 The solution's repository is segrated to stages (production, preproduction, development) and contains migrated *ERD Diagrams* on *Infastructure.Diagrams*. <br/> <br/>
 The Diagrams are showing in detail the Entity MigrationsHistory, IUser relations of AspNetUser (Identity - Individual Accounts); as along the Entity Relationsh mapping of
-Customer, Orders, Subscriptions, CustomerFields, History(..). The main software based on Clean Architecture to enhase Test-driven development (TDD) & Domain-driven development (DDD).<br/>
+Customer, Orders, Subscriptions, CustomerFields, History(..).<br/><br/>
+
+![Alt text](https://github.com/andispapageo/ErpDiscountsSubSystemNetCore/blob/master/Infastructure.Diagrams/Screenshots/IdentityERDiagram.png?raw=true)
+
+<br/><br/>
+ The main software based on Clean Architecture to enhase Test-driven development (TDD) & Domain-driven development (DDD).<br/>
 <br/>
-![alt text](https://github.com/andispapageo/ErpDiscountsSubSystemNetCore/blob/master/Infastructure.Diagrams/Screenshots/IdentityERDiagram.png)?raw=true)
 
 **Application Aims**: <br/>
 Scalabity, Performance, Testability, Maintenability and Readability.
