@@ -56,11 +56,14 @@ The app designed in N-Tiers(3) with scope the Dependency Inversion where: <br/> 
 
 **Application UserFlow**: <br/>
 
-On app launch, seeds and migrate data in MSSQLLocalDb.<br/><br/>
-Starting in Home Page where users are able to see the Orders and available discounts per object as along the dynamic customer fields.<br/><br/>
+On app initial launch, the software seeds and migrate data in MSSQLLocalDb with EFCore.<br/><br/>
+Starting in Home Page, users are able to see the Orders and available discounts with Final discount of subscriptions as along the dynamic binding of customer fields.<br/><br/>
 In order for the Unauthorised user to be able to create dynamic fields for Customer, a new user should be registered with Microsoft Identity and login. Once logged in there is a navigation where an authorised user can create dynamic simple string fields and dropdown fields. 
+<br/><br/>
+*PS. In order to recreate the ERDiagram.Designer and ERFragram.xsd in Visual Studio 22 please open the ERDiagram.xsd in Infastructure.Diagrams Project.<br/> Open SQL Server ObjectExlplorer and connect to the new aspnet-ErpDiscountsSubSystemNetCore-(..) Database. Please drag and drop all the Tables in the ERDiagram.Designer
 
-
+<br/><br/>
+Kind regards
 
 
  
