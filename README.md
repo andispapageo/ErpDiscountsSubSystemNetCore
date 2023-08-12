@@ -56,7 +56,7 @@ The app designed in N-Tiers(3) with scope the Dependency Inversion where: <br/> 
 
 **Application UserFlow**: <br/>
 
-The app lanuches, seeds and migrate data in MSSQLLocalDb.<br/><br/>
+On app launch, seeds and migrate data in MSSQLLocalDb.<br/><br/>
 Starting in Home Page where users are able to see the Orders and available discounts per object as along the dynamic customer fields.<br/><br/>
 In order for the Unauthorised user to be able to create dynamic fields for Customer, a new user should be registered with Microsoft Identity and login. Once logged in there is a navigation where an authorised user can create dynamic simple string fields and dropdown fields. 
 
