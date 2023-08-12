@@ -3,6 +3,7 @@
 ## .NET CORE 6 MVC Application
 
 ErpDiscountsSubSystemNetCore is a ERP and CMS web application that inherits scope of dynamic subscriptions. 
+Windows based MVC website.
 
 The main idea is based on Clean Architecture in order to enhase 
 Test-driven development (TDD) & Domain-driven development (DDD).
