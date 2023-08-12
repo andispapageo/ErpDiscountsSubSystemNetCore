@@ -40,14 +40,14 @@ Scalabity, Performance, Testability, Maintenability and Readability.
 | Unit Tests  |
 <br/><br/>
 
-The Core design illustrates the clean and scalable project where it reminds a microservice architecture. The application is following design paatern principles::
+The Core design illustrates the clean and scalable project like microservice. Follows design pattern principles:
 <br/><br/>
 | Principles |
 | ------------- |
-| Single Responsibility Principle  |
-| Open/Closed Principle  |
-| Liskov Substitution Principle  |
-| Interface Segregation Principle  |
+| Single Responsibility |
+| Open/Closed Principle |
+| Liskov Substitution |
+| Interface Segregation |
 | Dependency Inversion  |
 <br/><br/>
 
@@ -62,13 +62,12 @@ The app designed in N-Tiers(3) with scope the Dependency Inversion where: <br/> 
 1. Events, <br/>
 1. Handlers, <br/>
 1. Custom Exceptions, <br/>
-1. ViewModels
 
 **Application UserFlow**: <br/>
 
-On app initial launch, the software seeds and migrate data in MSSQLLocalDb with EFCore.<br/><br/>
+On application's initial launch,the software seeds and migrate data.<br/><br/>
 Starting in Home Page, users are able to see the Orders and available discounts with Final discount of subscriptions as along the dynamic binding of customer fields.<br/><br/>
-In order for the Unauthorised user to be able to create dynamic fields for Customer, a new user should be registered with Microsoft Identity and login. Once logged in there is a navigation where an authorised user can create dynamic simple string fields and dropdown fields. 
+In order for the unauthorised user to be able to create dynamic fields for a customer, a new user should be registered with Microsoft Identity and login. Once logged in there is a navigation where an authorised user can create dynamic, simple string fields and dropdown fields. 
 <br/><br/>
 *PS. In order to recreate the ERDiagram.Designer and ERFragram.xsd in Visual Studio 22 please open the ERDiagram.xsd in Infastructure.Diagrams Project.<br/> Open SQL Server ObjectExlplorer and connect to the new aspnet-ErpDiscountsSubSystemNetCore-(..) Database. Please drag and drop all the Tables in the ERDiagram.Designer
 
