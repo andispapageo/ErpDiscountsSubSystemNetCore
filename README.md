@@ -17,12 +17,7 @@ Test-driven development (TDD) & Domain-driven development (DDD).
 | WebHost Tests  (Mocking webhost )|
 | Unit Tests  |
 
-The app designed purely on Dependency Inversion where: 
-```Application -> Inherits -> Domain , Infastructure```
-```Infastructure -> Inherits -> Domain```
-```Domain (Common).```
-
-Core design of this project which mimics a microservice architecture is based on SOLID:
+The Core design illustrates the clean and scalable project where it reminds a microservice architecture. The application is following design paatern principles::
 
 | Principles |
 | ------------- |
@@ -31,6 +26,20 @@ Core design of this project which mimics a microservice architecture is based on
 | Liskov Substitution Principle  |
 | Interface Segregation Principle  |
 | Dependency Inversion  |
+
+
+The app designed in N-Tiers(3) with scope the Dependency Inversion where: <br/> <br/>
+1. ```Application -> depends -> Domain , Infastructure```<br/>
+1. ```Infastructure -> depends -> Domain```<br/>
+1. ```Domain (Common) ```
+
+**Application contains**: <br/>
+1. Behaviors,  <br/>
+1. Commands, <br/>
+1. Events, <br/>
+1. Handlers, <br/>
+1. Custom Exceptions, <br/>
+1. ViewModels
 
 
 
