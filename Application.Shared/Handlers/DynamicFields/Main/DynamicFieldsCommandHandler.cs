@@ -21,6 +21,7 @@ namespace Application.Shared.Handlers.DynamicFields.Main
         IUnitOfWork<TbField> UowTbField { get; }
         public async Task<Result> Handle(DynamicFieldsCommand request, CancellationToken cancellationToken)
         {
+            Result result = new Result(true);
             var textFieldRequests = request.DynamicFieldsPostVm.AvailableTextFields?.Any() ?? false;
             if (textFieldRequests)
             {
@@ -53,7 +54,7 @@ namespace Application.Shared.Handlers.DynamicFields.Main
                 entity.AddDomainEvent(new TbCustomerFieldsEvent(entity));
                 var res = await UowTbView.Repository.InsertOrUpdate(entity);
 
-                if (res.Item2 <= 0) return new Result(false, default);
+                if (res.Item2 <= 0) return new Result(false, new string[] {"Dynamic fields addition, exception on inserting data"});
 
                 await UowTbView.Repository.PublishDomain(entity);
                 entity.ClearDomainEvents();
@@ -63,15 +64,15 @@ namespace Application.Shared.Handlers.DynamicFields.Main
                     await UowTbField.Repository.InsertOrUpdate(new TbField()
                     {
                         Name = fields?.DropdownFieldName ?? string.Empty,
-                        ViewId = res.Item2
+                        ViewId = entity.Id
                     });
                 }
             }
             else
             {
-
+                new Result(false, new string[] { "No Additions of dynamic fields occured" });
             }
-            return new Result(false, default);
+            return result;
         }
     }
 }

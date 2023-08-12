@@ -36,11 +36,12 @@ namespace Application.Shared.Handlers.DynamicFields.Customer
 
         public async Task<Result> Handle(CustomerPostDynamicHistoryFieldsCommand request, CancellationToken cancellationToken)
         {
+            int updatedId = default, customerFieldHistoryId = default;
             foreach (var item in request.CustomerFieldsVms)
             {
-                var customerFieldExist = UowTbCustomerField.Repository.GetQuery(x => x.CustomerId == item.CustomerId && x.ViewId == item.ViewId && string.Equals(item.ViewValue, x.ViewValue)).FirstOrDefault();
+                var customerFieldExist = UowTbCustomerField.Repository.GetQuery(x => x.CustomerId == item.CustomerId && x.ViewId == item.ViewId && !string.Equals(item.ViewValue, x.ViewValue)).FirstOrDefault();
                 if (customerFieldExist == null) continue;
-                var addHistoryValue = await UowCustomerFieldsHistory.Repository.InsertOrUpdate(new TbCustomerFieldsHistory()
+                var result = await UowCustomerFieldsHistory.Repository.InsertOrUpdate(new TbCustomerFieldsHistory()
                 {
                     CustomerId = item.CustomerId,
                     ViewId = item.ViewId,
@@ -50,11 +51,12 @@ namespace Application.Shared.Handlers.DynamicFields.Customer
                 });
 
                 customerFieldExist.ViewValue = item.ViewValue;
-                await UowTbCustomerField.Repository.UpdateAsync(customerFieldExist);
+                updatedId = await UowTbCustomerField.Repository.UpdateAsync(customerFieldExist);
+                customerFieldHistoryId = result.Item2;
 
             }
 
-            return new Result(false, default);
+            return new Result(customerFieldHistoryId > 0 && updatedId > 0, new string[] { });
         }
     }
 }

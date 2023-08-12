@@ -9,7 +9,5 @@ namespace Domain.Core.Entities
         public string? ViewValue { get; set; }
         public virtual TbCustomer Customer { get; set; } = null!;
         public virtual TbView View { get; set; } = null!;
-
-
     }
 }

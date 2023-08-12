@@ -28,8 +28,8 @@ namespace Application.Shared.Commands.DynamicFields.Main
                .WithMessage("'{PropertyName}' must be unique.")
                .WithErrorCode("Unique");
 
-            RuleFor(v => v.DynamicFieldsPostVm).Must(NotEmptyFieldsAndDropdowns)
-               .WithMessage("'Dropdown key must not be empty.")
+            RuleFor(v => v.DynamicFieldsPostVm).Must(NotEmptyFieldsGeneral)
+               .WithMessage("'No fields added.")
                .WithErrorCode("Unique");
 
         }
@@ -41,9 +41,10 @@ namespace Application.Shared.Commands.DynamicFields.Main
             return res.HasValue ? !res.Value : true;
         }
 
-        public bool NotEmptyFieldsAndDropdowns(DynamicFieldsPostVm? dynamicFieldsPostVm)
+        public bool NotEmptyFieldsGeneral(DynamicFieldsPostVm? dynamicFieldsPostVm)
         {
-            return !(!dynamicFieldsPostVm.AvailableTextFields?.Any() ?? true) && string.IsNullOrEmpty(dynamicFieldsPostVm.DropdownKeyName);
+            if (dynamicFieldsPostVm.AvailableTextFields?.Any() ?? false) return true;
+            return !string.IsNullOrEmpty(dynamicFieldsPostVm.DropdownKeyName);
         }
 
         public bool AvailableTextFieldsUnique(IEnumerable<DynamicFieldsVm>? availableTextFields)

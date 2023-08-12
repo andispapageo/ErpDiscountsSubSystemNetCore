@@ -2,10 +2,11 @@
 {
     public class Result
     {
-        public Result(bool succeeded, IEnumerable<string> errors)
+        public Result(bool succeeded, IEnumerable<string>? errors = null)
         {
             Succeeded = succeeded;
-            Errors = errors.ToArray();
+            if (errors != null)
+                Errors = errors.ToArray();
         }
 
         public bool Succeeded { get; init; }

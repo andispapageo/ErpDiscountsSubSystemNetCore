@@ -22,12 +22,12 @@ namespace ErpDiscountsSubSystemNetCore.Controllers
             try
             {
                 var saveRequestResult = await Mediator.Send(new DynamicFieldsCommand() { DynamicFieldsPostVm = dynamicFieldsPostVm });
-                return View(new DynamicFieldsPostVm() { Result = saveRequestResult });
+                return View(nameof(Index), new DynamicFieldsPostVm() { Result = saveRequestResult });
             }
             catch (Exception ex)
             {
-                var result = new Result(false, new[] { ex.Message });
-                return View(new DynamicFieldsPostVm() { Result = result });
+                ModelState.AddModelError("ValidationErrors", ex.Message);
+                return View(nameof(Index), new DynamicFieldsPostVm());
             }
         }
     }

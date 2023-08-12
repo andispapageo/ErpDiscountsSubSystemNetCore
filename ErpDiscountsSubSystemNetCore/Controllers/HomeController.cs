@@ -11,10 +11,12 @@ namespace ErpDiscountsSubSystemNetCore.Controllers
 {
     public class HomeController : Controller
     {
-        public IMediator mediator { get; }
-        public HomeController(IMediator mediator)
+        readonly ILogger<HomeController> logger;
+        readonly IMediator mediator;
+        public HomeController(IMediator mediator, ILogger<HomeController> logger)
         {
             this.mediator = mediator;
+            this.logger = logger;
         }
 
         public async Task<ActionResult<IEnumerable<TbOrder>>> Index()
@@ -29,8 +31,9 @@ namespace ErpDiscountsSubSystemNetCore.Controllers
             if (ModelState.IsValid)
             {
                 var resRequest = await mediator.Send(new CustomerPostDynamicHistoryFieldsCommand() { CustomerFieldsVms = inheritorPresenterVm.CustomerFields });
+                logger.LogInformation("Customer Fields History updated {event}", resRequest.Succeeded);
             }
-            return View();
+            return RedirectToAction(nameof(Index));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -7,6 +7,7 @@
     var CustomerDynamicFields = Model.CustomerFields;
     var counterOrder = 0;
     var counterDsc = 0;
+
 }
 <style>
     .marginCst {
@@ -18,7 +19,7 @@
 <div class="text-center">
     <h3>Welcome to ERP</h3>
     <p>Illustration of subscription order with final discount price for a mocked customer, presented with tables.</p>
-    <p>In order to create additional subscriptions, or dynamic views please register an In.</p>
+    <p>In order to create additional subscriptions, or dynamic views please register here, as an Individual Account.</p>
 </div>
 <div class="">
 
@@ -99,9 +100,27 @@
                         @Html.HiddenFor(m=>m.CustomerFields[countField].CustomerId)
                         <tr>
                             <td>@custFields.ViewName: </td>
-                            <td>
-                                @Html.TextBoxFor(m=>m.CustomerFields[countField].ViewValue)
-                            </td>
+                            @if (custFields.ViewTypeId == 1)
+                            {
+                                <td>
+                                    @Html.TextBoxFor(m=>m.CustomerFields[countField].ViewValue)
+                                </td>
+                            }
+                            else if (custFields.ViewTypeId == 2)
+                            {
+                                var counterDlist = 0;
+                                var listItems = new List<SelectListItem>();
+                                var custFieldsRes = custFields.DropDownFields.ToList();
+                                foreach (var slcItem in custFieldsRes)
+                                {
+                                    listItems.Add(new SelectListItem { Text = slcItem.Name, Value = slcItem.Id.ToString(), Selected = counterDlist == 0 });
+                                    counterDlist++;
+                                }
+                                <td>
+                                    @Html.DropDownListFor(m=> m.CustomerFields[countField].ViewValue, listItems, new { @class = "form-control" })
+                                </td>
+                               
+                            }
                         </tr>
                         countField++;
                     }
