@@ -14,7 +14,10 @@ The solution's repository is segrated to stages (production, preproduction, deve
 The Diagrams are showing in detail the Entity MigrationsHistory, IUser relations of AspNetUser (Identity - Individual Accounts); as along the Entity Relationsh mapping of
 Customer, Orders, Subscriptions, CustomerFields, History(..).<br/><br/>
 
-![Alt text](https://github.com/andispapageo/ErpDiscountsSubSystemNetCore/blob/master/Infastructure.Diagrams/Screenshots/IdentityERDiagram.png?raw=true)
+**Identity DataSet ER**: <br/>
+![Alt text](https://github.com/andispapageo/ErpDiscountsSubSystemNetCore/blob/master/Infastructure.Diagrams/Screenshots/IdentityERDiagram.png?raw=true)<br/>
+**ER Application**: <br/>
+![Alt text](https://github.com/andispapageo/ErpDiscountsSubSystemNetCore/blob/master/Infastructure.Diagrams/Screenshots/MainERDiagram.png)
 
 <br/><br/>
  The main software based on Clean Architecture to enhase Test-driven development (TDD) & Domain-driven development (DDD).<br/>
