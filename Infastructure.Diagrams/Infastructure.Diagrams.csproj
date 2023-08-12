@@ -7,17 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Update="DatabaseERD\ERDataSet.Designer.cs">
+    <Compile Update="DatabaseERD\ERDiagram.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>ERDataSet.xsd</DependentUpon>
+      <DependentUpon>ERDiagram.xsd</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="DatabaseERD\ERDataSet.xsd">
+    <None Update="DatabaseERD\ERDiagram.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ERDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>ERDiagram.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
 
