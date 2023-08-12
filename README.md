@@ -5,6 +5,9 @@
 ErpDiscountsSubSystemNetCore is a ERP and CMS web application that inherits scope of dynamic subscriptions. 
 Windows based MVC website based on functional(db) service oriented.
 
+IDE: Visual Studio Community
+Profiles:ErpDiscountsSubSystemNetCore, IIS Express
+
 The main idea is based on Clean Architecture in order to enhase  Test-driven development (TDD) & Domain-driven development (DDD).
 
 | Architecture Design |
