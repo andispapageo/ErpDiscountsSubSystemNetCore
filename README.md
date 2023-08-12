@@ -2,8 +2,9 @@
 
 ## .NET CORE 6 MVC Application
 
-ErpDiscountsSubSystemNetCore is a ERP and CMS web application that inherits scope of dynamic subscriptions. <br/>
-Windows based MVC website based on functional(db) with MSSQL services oriented.<br/>
+ErpDiscountsSubSystemNetCore is a ERP and CMS web application that inherits the scope of dynamic subscriptions. <br/>
+<br/>
+.Net Core Windows based MVC application based on functional(db) service with MSSQL and EFCore<br/>
 
 > Please clone the app here: git clone https://github.com/andispapageo/ErpDiscountsSubSystemNetCore.git
 <br/><br/>
@@ -11,9 +12,9 @@ Windows based MVC website based on functional(db) with MSSQL services oriented.<
 - __Profiles__: *ErpDiscountsSubSystemNetCore, IIS Express* <br/>
 
 <br/>
-The solution's repository is segrated to stages (production, preproduction, development) and contains migrated *ERD Diagrams* on *Infastructure.Diagrams*. <br/> <br/>
-The Diagrams are showing in detail the Entity MigrationsHistory, IUser relations of AspNetUser (Identity - Individual Accounts); as along the Entity Relationsh mapping of
-Customer, Orders, Subscriptions, CustomerFields, History(..).<br/><br/>
+The solution's repository segrated in stages (production, preproduction, development) and contains migrated *ERD Diagrams* on *Infastructure.Diagrams*. <br/> <br/>
+The Diagrams are showing in detail the Entity MigrationsHistory, IUser relations of AspNetUser (Identity - Individual Accounts); as along the entity relations mapping of
+Customers,Users, Orders, Subscriptions, CustomerFields, FieldsHistory(..).<br/><br/>
 
 **Identity DataSet ER**: <br/>
 ![Alt text](https://github.com/andispapageo/ErpDiscountsSubSystemNetCore/blob/master/Infastructure.Diagrams/Screenshots/IdentityERDiagram.png?raw=true)<br/>
@@ -28,7 +29,7 @@ Customer, Orders, Subscriptions, CustomerFields, History(..).<br/><br/>
 Scalabity, Performance, Testability, Maintenability and Readability.
 <br/><br/>
 
-| Architecture Architecture                                                           |
+| Architecture Design                                                       |
 | ------------- |
 | Application (Shared) |
 | Domains  (Core,Common) |
