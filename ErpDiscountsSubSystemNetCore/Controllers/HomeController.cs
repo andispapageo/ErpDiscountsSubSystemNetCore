@@ -1,4 +1,6 @@
-﻿using Application.Shared.Commands;
+﻿using Application.Shared.Commands.DynamicFields.Customer;
+using Application.Shared.Commands.Orders;
+using Application.Shared.ViewModels;
 using Domain.Core.Entities;
 using ErpDiscountsSubSystemNetCore.Models;
 using MediatR;
@@ -9,24 +11,29 @@ namespace ErpDiscountsSubSystemNetCore.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        public IMediator Mediator { get; }
-
-        public HomeController(ILogger<HomeController> logger, IMediator mediator)
+        readonly ILogger<HomeController> logger;
+        readonly IMediator mediator;
+        public HomeController(IMediator mediator, ILogger<HomeController> logger)
         {
-            _logger = logger;
-            Mediator = mediator;
+            this.mediator = mediator;
+            this.logger = logger;
         }
 
         public async Task<ActionResult<IEnumerable<TbOrder>>> Index()
         {
-            var getOrdersFromCustomer = await Mediator.Send(new OrderCommand() { CustomerId = 1 });
+            var getOrdersFromCustomer = await mediator.Send(new InheritorPresenterCommand() { CustomerId = 1 });
             return View(getOrdersFromCustomer);
         }
 
-        public IActionResult Privacy()
+        [HttpPost]
+        public async Task<ActionResult> OnPostFields(InheritorPresenterVm inheritorPresenterVm)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                var resRequest = await mediator.Send(new CustomerPostDynamicHistoryFieldsCommand() { CustomerFieldsVms = inheritorPresenterVm.CustomerFields });
+                logger.LogInformation("Customer Fields History updated {event}", resRequest.Succeeded);
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

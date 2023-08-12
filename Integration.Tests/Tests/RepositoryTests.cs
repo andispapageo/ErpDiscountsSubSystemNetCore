@@ -1,4 +1,5 @@
 ﻿using Domain.Core.Entities;
+using Domain.Core.Entities.Base;
 using Domain.Core.Interfaces;
 using FluentAssertions;
 using Moq;
@@ -22,7 +23,7 @@ namespace Integration.Tests.Tests
         [Test]
         public async Task UnitOfWorkCurrencyTest() => await GenericTests(new Mock<IUnitOfWork<TbCurrency>>());
 
-        public async Task GenericTests<T>(Mock<IUnitOfWork<T>> mock) where T : class
+        public async Task GenericTests<T>(Mock<IUnitOfWork<T>> mock) where T : BaseEntity
         {
             mock.Object.Should().NotBeNull();
             mock.Object.Should().As<IUnitOfWork<T>>();

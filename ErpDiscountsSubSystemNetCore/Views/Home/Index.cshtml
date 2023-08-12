@@ -1,27 +1,30 @@
 ﻿@using Application.Shared.ViewModels
+@using Application.Shared.ViewModels.DynamicFields
+@model InheritorPresenterVm
 @{
     ViewData["Title"] = "Home Page";
-    var CustomerOrders = Model;
+    var CustomerOrders = Model.OrderVms;
+    var CustomerDynamicFields = Model.CustomerFields;
     var counterOrder = 0;
     var counterDsc = 0;
+
 }
 <style>
-    .margin70 {
-        margin: 70px 0px;
+    .marginCst {
+        margin: 38px 0px;
+        color: dodgerblue
     }
 </style>
-@model IEnumerable<OrderVm>
+
 <div class="text-center">
-    <h3>Welcome to ERP Webapp</h3>
-    <hr />
+    <h3>Welcome to ERP</h3>
     <p>Illustration of subscription order with final discount price for a mocked customer, presented with tables.</p>
-    <p>In order to create additional subscriptions please register.</p>
-    <hr />
+    <p>In order to create additional subscriptions, or dynamic views please register here, as an Individual Account.</p>
 </div>
 <div class="">
 
-    <div class="margin70">
-        <h4>Orders</h4>
+    <div class="marginCst">
+        <h5>Orders</h5>
     </div>
     <table class="table table-striped table-hover table-sm">
         <thead class="thead-dark">
@@ -32,7 +35,7 @@
                 <th scope="col">Order dreation date</th>
                 <th scope="col">Subscription </th>
                 <th scope="col">Price</th>
-                <th scope="col">Final discount price</th>
+                <th scope="col" style="color:dodgerblue">Final discount price</th>
             </tr>
         </thead>
         <tbody>
@@ -46,14 +49,13 @@
                     <th scope="row"> @order.CreatedDate</th>
                     <th scope="row"> @string.Format("{0} / {1}", subscriptionVm?.Price ?? 0 , subscriptionVm?.DateNum )</th>
                     <th scope="row"> @(subscriptionVm?.Price ?? 0)</th>
-                    <th scope="row"> @order.FinalPrice </th>
+                    <th scope="row" style="color:dodgerblue"> @order.FinalPrice </th>
                 </tr>
             }
 
         </tbody>
     </table>
-    <hr />
-    <div class="margin70">
+    <div class="marginCst">
         <h5>Discounts Available</h5>
     </div>
     <table class="table table-striped table-hover table-sm">
@@ -67,20 +69,65 @@
             </tr>
         </thead>
         <tbody>
-
             @foreach (var discount in CustomerOrders.Where(x => x.Discounts != null).SelectMany(x => x.Discounts))
             {
 
                 <tr>
                     <th scope="row">@(++counterDsc)</th>
-                    <th scope="row">( @discount.DiscountName )</th>
+                    <th scope="row">( @discount.DiscountName)</th>
                     <th scope="row"> @string.Format("{0} {1}", discount.Currency, discount.CurrencySymbol)</th>
                     <th scope="row"> @string.Format("{0}", discount.Price)</th>
                     <th scope="row"> @discount.DiscountType</th>
                 </tr>
             }
         </tbody>
-
     </table>
-
+    <hr />
+    <div class="marginCst">
+        <h5>Dynamic Fields Customer</h5>
+    </div>
+    <form method="post" asp-controller="Home" asp-action="OnPostFields">
+        <div class="row" style="justify-content: center;">
+            <table class="table table-striped table-hover table-sm">
+                <tbody>
+                    @{
+                        var countField = 0;
+                    }
+                    @foreach (var custFields in CustomerDynamicFields)
+                    {
+                        @Html.HiddenFor(m=>m.CustomerFields[countField].ViewId)
+                        @Html.HiddenFor(m=>m.CustomerFields[countField].ViewTypeId)
+                        @Html.HiddenFor(m=>m.CustomerFields[countField].CustomerId)
+                        <tr>
+                            <td>@custFields.ViewName: </td>
+                            @if (custFields.ViewTypeId == 1)
+                            {
+                                <td>
+                                    @Html.TextBoxFor(m=>m.CustomerFields[countField].ViewValue)
+                                </td>
+                            }
+                            else if (custFields.ViewTypeId == 2)
+                            {
+                                var counterDlist = 0;
+                                var listItems = new List<SelectListItem>();
+                                var custFieldsRes = custFields.DropDownFields.ToList();
+                                foreach (var slcItem in custFieldsRes)
+                                {
+                                    listItems.Add(new SelectListItem { Text = slcItem.Name, Value = slcItem.Id.ToString(), Selected = counterDlist == 0 });
+                                    counterDlist++;
+                                }
+                                <td>
+                                    @Html.DropDownListFor(m=> m.CustomerFields[countField].ViewValue, listItems, new { @class = "form-control" })
+                                </td>
+                               
+                            }
+                        </tr>
+                        countField++;
+                    }
+                </tbody>
+            </table>
+            <hr />
+        </div>
+        <input type="submit" class="btn btn-primary" style="width:20%;" value="Save Fields" />
+    </form>
 </div>

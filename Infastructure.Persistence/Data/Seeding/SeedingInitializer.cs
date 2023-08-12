@@ -1,6 +1,8 @@
 ﻿using Domain.Core.Entities;
 using Domain.Core.Enums;
+using Domain.Core.Interfaces;
 using Infastructure.Data;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infastructure.Persistence.Data.Seeding
@@ -8,21 +10,33 @@ namespace Infastructure.Persistence.Data.Seeding
     internal class SeedingInitializer : IDisposable
     {
         private bool disposedValue;
+        public IUnitOfWork<TbCustomerField> uowCustomerFields { get; }
         private ApplicationDbContext context { get; }
-        public SeedingInitializer(ApplicationDbContext applicationDbContext)
+        public SeedingInitializer(IUnitOfWork<TbCustomerField> uowCustomerFields, ApplicationDbContext applicationDbContext)
         {
+            this.uowCustomerFields = uowCustomerFields;
             context = applicationDbContext;
         }
 
         public async Task<int> Seed()
         {
             int setup = -1;
+
             if (context.TbDiscountTypes.Count() == 0)
             {
                 await context.TbDiscountTypes.AddAsync(new TbDiscountType() { DiscountType = DiscountTypeEn.Percentage.ToString() });
                 await context.TbDiscountTypes.AddAsync(new TbDiscountType() { DiscountType = DiscountTypeEn.Coupon.ToString() });
                 await context.SaveChangesAsync();
             }
+
+            if (context.TbViewTypes.Count() == 0)
+            {
+                await context.TbViewTypes.AddAsync(new TbViewType() { TypeName = "SimpleField" });
+                await context.TbViewTypes.AddAsync(new TbViewType() { TypeName = "DropdownLists" });
+                await context.SaveChangesAsync();
+            }
+
+
 
             if (context.TbCurrencies.Count() == 0)
             {
@@ -69,19 +83,31 @@ namespace Infastructure.Persistence.Data.Seeding
 
             if (context.TbCustomers.Count() == 0)
             {
-                await context.TbCustomers.AddAsync(
-                    new TbCustomer()
-                    {
-                        Name = "MockCustName",
-                        LastName = "MockCustLastName",
-                        Address = "MockCustAddress",
-                    });
-                await context.SaveChangesAsync();
+                var viewId = 0;
+                TbView? view = null;
+                var customer = new TbCustomer()
+                {
+                    Name = "MockCustName",
+                    LastName = "MockCustLastName",
+                    Address = "MockCustAddress",
+                };
+
+                await context.TbCustomers.AddAsync(customer);
+                var customerId = await context.SaveChangesAsync();
+
+                if (context.TbViews.Count() == 0)
+                {
+                    view = new TbView() { TypeId = 1, Name = "Email" };
+                    await context.TbViews.AddAsync(view);
+                    viewId = await context.SaveChangesAsync();
+                }
+
+                await customer.AddDynamicViews(uowCustomerFields, viewId, null);
             }
 
             if (context.TbOrders.Count() == 0)
             {
-                var customer = await context.TbCustomers.FirstOrDefaultAsync(x => x.Name == "MockCustomerName");
+                var customer = await context.TbCustomers.FirstOrDefaultAsync(x => x.Name == "MockCustName");
                 if (customer != null)
                 {
                     await context.TbOrders.AddAsync(new TbOrder()
@@ -124,6 +150,8 @@ namespace Infastructure.Persistence.Data.Seeding
                         DateNum = 6
                     });
                 }
+
+
             }
 
             if (context.ChangeTracker.HasChanges())
