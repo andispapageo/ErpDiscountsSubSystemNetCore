@@ -10172,8 +10172,8 @@ namespace Infastructure.Diagrams.DatabaseERD.ERDiagramTableAdapters {
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[__EFMigrationsHistory] ([MigrationId], [ProductVersion]) VALUE" +
-                "S (@MigrationId, @ProductVersion);\r\nSELECT MigrationId, ProductVersion FROM __EF" +
-                "MigrationsHistory WHERE (MigrationId = @MigrationId)";
+                "S (@MigrationId, @ProductVersion);\nSELECT MigrationId, ProductVersion FROM __EFM" +
+                "igrationsHistory WHERE (MigrationId = @MigrationId)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MigrationId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MigrationId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ProductVersion", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProductVersion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -10516,8 +10516,8 @@ SELECT MigrationId, ProductVersion FROM __EFMigrationsHistory WHERE (MigrationId
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[AspNetRoleClaims] ([RoleId], [ClaimType], [ClaimValue]) VALUES" +
-                " (@RoleId, @ClaimType, @ClaimValue);\r\nSELECT Id, RoleId, ClaimType, ClaimValue F" +
-                "ROM AspNetRoleClaims WHERE (Id = SCOPE_IDENTITY())";
+                " (@RoleId, @ClaimType, @ClaimValue);\nSELECT Id, RoleId, ClaimType, ClaimValue FR" +
+                "OM AspNetRoleClaims WHERE (Id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoleId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoleId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ClaimType", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ClaimType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -10526,8 +10526,8 @@ SELECT MigrationId, ProductVersion FROM __EFMigrationsHistory WHERE (MigrationId
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[AspNetRoleClaims] SET [RoleId] = @RoleId, [ClaimType] = @ClaimType," +
                 " [ClaimValue] = @ClaimValue WHERE (([Id] = @Original_Id) AND ([RoleId] = @Origin" +
-                "al_RoleId));\r\nSELECT Id, RoleId, ClaimType, ClaimValue FROM AspNetRoleClaims WHE" +
-                "RE (Id = @Id)";
+                "al_RoleId));\nSELECT Id, RoleId, ClaimType, ClaimValue FROM AspNetRoleClaims WHER" +
+                "E (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoleId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoleId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ClaimType", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ClaimType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -10873,8 +10873,8 @@ SELECT MigrationId, ProductVersion FROM __EFMigrationsHistory WHERE (MigrationId
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[AspNetRoles] ([Id], [Name], [NormalizedName], [ConcurrencyStam" +
-                "p]) VALUES (@Id, @Name, @NormalizedName, @ConcurrencyStamp);\r\nSELECT Id, Name, N" +
-                "ormalizedName, ConcurrencyStamp FROM AspNetRoles WHERE (Id = @Id)";
+                "p]) VALUES (@Id, @Name, @NormalizedName, @ConcurrencyStamp);\nSELECT Id, Name, No" +
+                "rmalizedName, ConcurrencyStamp FROM AspNetRoles WHERE (Id = @Id)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -11268,8 +11268,8 @@ SELECT Id, Name, NormalizedName, ConcurrencyStamp FROM AspNetRoles WHERE (Id = @
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[AspNetUserClaims] ([UserId], [ClaimType], [ClaimValue]) VALUES" +
-                " (@UserId, @ClaimType, @ClaimValue);\r\nSELECT Id, UserId, ClaimType, ClaimValue F" +
-                "ROM AspNetUserClaims WHERE (Id = SCOPE_IDENTITY())";
+                " (@UserId, @ClaimType, @ClaimValue);\nSELECT Id, UserId, ClaimType, ClaimValue FR" +
+                "OM AspNetUserClaims WHERE (Id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ClaimType", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ClaimType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -11278,8 +11278,8 @@ SELECT Id, Name, NormalizedName, ConcurrencyStamp FROM AspNetRoles WHERE (Id = @
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[AspNetUserClaims] SET [UserId] = @UserId, [ClaimType] = @ClaimType," +
                 " [ClaimValue] = @ClaimValue WHERE (([Id] = @Original_Id) AND ([UserId] = @Origin" +
-                "al_UserId));\r\nSELECT Id, UserId, ClaimType, ClaimValue FROM AspNetUserClaims WHE" +
-                "RE (Id = @Id)";
+                "al_UserId));\nSELECT Id, UserId, ClaimType, ClaimValue FROM AspNetUserClaims WHER" +
+                "E (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ClaimType", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ClaimType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -12005,16 +12005,16 @@ SELECT LoginProvider, ProviderKey, ProviderDisplayName, UserId FROM AspNetUserLo
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[AspNetUserRoles] ([UserId], [RoleId]) VALUES (@UserId, @RoleId" +
-                ");\r\nSELECT UserId, RoleId FROM AspNetUserRoles WHERE (RoleId = @RoleId) AND (Use" +
-                "rId = @UserId)";
+                ");\nSELECT UserId, RoleId FROM AspNetUserRoles WHERE (RoleId = @RoleId) AND (User" +
+                "Id = @UserId)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoleId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoleId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[AspNetUserRoles] SET [UserId] = @UserId, [RoleId] = @RoleId WHERE (" +
-                "([UserId] = @Original_UserId) AND ([RoleId] = @Original_RoleId));\r\nSELECT UserId" +
-                ", RoleId FROM AspNetUserRoles WHERE (RoleId = @RoleId) AND (UserId = @UserId)";
+                "([UserId] = @Original_UserId) AND ([RoleId] = @Original_RoleId));\nSELECT UserId," +
+                " RoleId FROM AspNetUserRoles WHERE (RoleId = @RoleId) AND (UserId = @UserId)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RoleId", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RoleId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -12409,11 +12409,11 @@ SELECT Id, UserName, NormalizedUserName, Email, NormalizedEmail, EmailConfirmed,
                 "onfirmed] = @Original_PhoneNumberConfirmed) AND ([TwoFactorEnabled] = @Original_" +
                 "TwoFactorEnabled) AND ((@IsNull_LockoutEnd = 1 AND [LockoutEnd] IS NULL) OR ([Lo" +
                 "ckoutEnd] = @Original_LockoutEnd)) AND ([LockoutEnabled] = @Original_LockoutEnab" +
-                "led) AND ([AccessFailedCount] = @Original_AccessFailedCount));\r\nSELECT Id, UserN" +
-                "ame, NormalizedUserName, Email, NormalizedEmail, EmailConfirmed, PasswordHash, S" +
-                "ecurityStamp, ConcurrencyStamp, PhoneNumber, PhoneNumberConfirmed, TwoFactorEnab" +
-                "led, LockoutEnd, LockoutEnabled, AccessFailedCount FROM AspNetUsers WHERE (Id = " +
-                "@Id)";
+                "led) AND ([AccessFailedCount] = @Original_AccessFailedCount));\nSELECT Id, UserNa" +
+                "me, NormalizedUserName, Email, NormalizedEmail, EmailConfirmed, PasswordHash, Se" +
+                "curityStamp, ConcurrencyStamp, PhoneNumber, PhoneNumberConfirmed, TwoFactorEnabl" +
+                "ed, LockoutEnd, LockoutEnabled, AccessFailedCount FROM AspNetUsers WHERE (Id = @" +
+                "Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -13398,16 +13398,16 @@ SELECT UserId, LoginProvider, Name, Value FROM AspNetUserTokens WHERE (LoginProv
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Symbol", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Symbol", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[TbCurrency] ([Name], [Symbol]) VALUES (@Name, @Symbol);\r\nSELEC" +
-                "T Id, Name, Symbol FROM TbCurrency WHERE (Id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[TbCurrency] ([Name], [Symbol]) VALUES (@Name, @Symbol);\nSELECT" +
+                " Id, Name, Symbol FROM TbCurrency WHERE (Id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Symbol", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Symbol", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[TbCurrency] SET [Name] = @Name, [Symbol] = @Symbol WHERE (([Id] = @" +
-                "Original_Id) AND ([Name] = @Original_Name) AND ([Symbol] = @Original_Symbol));\r\n" +
-                "SELECT Id, Name, Symbol FROM TbCurrency WHERE (Id = @Id)";
+                "Original_Id) AND ([Name] = @Original_Name) AND ([Symbol] = @Original_Symbol));\nS" +
+                "ELECT Id, Name, Symbol FROM TbCurrency WHERE (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Symbol", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Symbol", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -13751,8 +13751,8 @@ SELECT UserId, LoginProvider, Name, Value FROM AspNetUserTokens WHERE (LoginProv
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[TbCustomer] ([Name], [LastName], [Address]) VALUES (@Name, @La" +
-                "stName, @Address);\r\nSELECT Id, Name, LastName, Address FROM TbCustomer WHERE (Id" +
-                " = SCOPE_IDENTITY())";
+                "stName, @Address);\nSELECT Id, Name, LastName, Address FROM TbCustomer WHERE (Id " +
+                "= SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LastName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LastName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -14131,8 +14131,8 @@ SELECT Id, Name, LastName, Address FROM TbCustomer WHERE (Id = @Id)";
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[TbCustomerFields] ([CustomerId], [ViewId], [ViewValue]) VALUES" +
-                " (@CustomerId, @ViewId, @ViewValue);\r\nSELECT Id, CustomerId, ViewId, ViewValue F" +
-                "ROM TbCustomerFields WHERE (Id = SCOPE_IDENTITY())";
+                " (@CustomerId, @ViewId, @ViewValue);\nSELECT Id, CustomerId, ViewId, ViewValue FR" +
+                "OM TbCustomerFields WHERE (Id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CustomerId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CustomerId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ViewId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ViewId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -15211,15 +15211,15 @@ SELECT Id, DiscountTypeId, DiscountName, Price, CurrencyId, PriorityOrderId FROM
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DiscountType", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DiscountType", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[TbDiscountTypes] ([DiscountType]) VALUES (@DiscountType);\r\nSEL" +
-                "ECT Id, DiscountType FROM TbDiscountTypes WHERE (Id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[TbDiscountTypes] ([DiscountType]) VALUES (@DiscountType);\nSELE" +
+                "CT Id, DiscountType FROM TbDiscountTypes WHERE (Id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DiscountType", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DiscountType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[TbDiscountTypes] SET [DiscountType] = @DiscountType WHERE (([Id] = " +
-                "@Original_Id) AND ([DiscountType] = @Original_DiscountType));\r\nSELECT Id, Discou" +
-                "ntType FROM TbDiscountTypes WHERE (Id = @Id)";
+                "@Original_Id) AND ([DiscountType] = @Original_DiscountType));\nSELECT Id, Discoun" +
+                "tType FROM TbDiscountTypes WHERE (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DiscountType", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DiscountType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -15533,16 +15533,16 @@ SELECT Id, DiscountTypeId, DiscountName, Price, CurrencyId, PriorityOrderId FROM
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[TbField] ([ViewId], [Name]) VALUES (@ViewId, @Name);\r\nSELECT I" +
-                "d, ViewId, Name FROM TbField WHERE (Id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[TbField] ([ViewId], [Name]) VALUES (@ViewId, @Name);\nSELECT Id" +
+                ", ViewId, Name FROM TbField WHERE (Id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ViewId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ViewId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[TbField] SET [ViewId] = @ViewId, [Name] = @Name WHERE (([Id] = @Ori" +
-                "ginal_Id) AND ([ViewId] = @Original_ViewId) AND ([Name] = @Original_Name));\r\nSEL" +
-                "ECT Id, ViewId, Name FROM TbField WHERE (Id = @Id)";
+                "ginal_Id) AND ([ViewId] = @Original_ViewId) AND ([Name] = @Original_Name));\nSELE" +
+                "CT Id, ViewId, Name FROM TbField WHERE (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ViewId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ViewId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -15868,9 +15868,9 @@ SELECT Id, DiscountTypeId, DiscountName, Price, CurrencyId, PriorityOrderId FROM
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[TbOrder] ([ProductId], [CustomerId], [CreatedDate], [UpdatedDa" +
-                "te]) VALUES (@ProductId, @CustomerId, @CreatedDate, @UpdatedDate);\r\nSELECT Id, P" +
-                "roductId, CustomerId, CreatedDate, UpdatedDate FROM TbOrder WHERE (Id = SCOPE_ID" +
-                "ENTITY())";
+                "te]) VALUES (@ProductId, @CustomerId, @CreatedDate, @UpdatedDate);\nSELECT Id, Pr" +
+                "oductId, CustomerId, CreatedDate, UpdatedDate FROM TbOrder WHERE (Id = SCOPE_IDE" +
+                "NTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ProductId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProductId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CustomerId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CustomerId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -16192,8 +16192,8 @@ SELECT Id, ProductId, CustomerId, CreatedDate, UpdatedDate FROM TbOrder WHERE (I
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[TbOrderDiscount] ([OrderId], [DiscountId]) VALUES (@OrderId, @" +
-                "DiscountId);\r\nSELECT Id, OrderId, DiscountId FROM TbOrderDiscount WHERE (Id = SC" +
-                "OPE_IDENTITY())";
+                "DiscountId);\nSELECT Id, OrderId, DiscountId FROM TbOrderDiscount WHERE (Id = SCO" +
+                "PE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OrderId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OrderId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DiscountId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DiscountId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -16855,16 +16855,16 @@ SELECT Id, OrderId, SubscriptionType, Price, DatePlan, DateNum FROM TbSubscripti
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[TbView] ([TypeId], [Name]) VALUES (@TypeId, @Name);\r\nSELECT Id" +
-                ", TypeId, Name FROM TbView WHERE (Id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[TbView] ([TypeId], [Name]) VALUES (@TypeId, @Name);\nSELECT Id," +
+                " TypeId, Name FROM TbView WHERE (Id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TypeId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TypeId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[TbView] SET [TypeId] = @TypeId, [Name] = @Name WHERE (([Id] = @Orig" +
-                "inal_Id) AND ([TypeId] = @Original_TypeId) AND ([Name] = @Original_Name));\r\nSELE" +
-                "CT Id, TypeId, Name FROM TbView WHERE (Id = @Id)";
+                "inal_Id) AND ([TypeId] = @Original_TypeId) AND ([Name] = @Original_Name));\nSELEC" +
+                "T Id, TypeId, Name FROM TbView WHERE (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TypeId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TypeId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -17182,15 +17182,15 @@ SELECT Id, OrderId, SubscriptionType, Price, DatePlan, DateNum FROM TbSubscripti
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TypeName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TypeName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[TbViewType] ([TypeName]) VALUES (@TypeName);\r\nSELECT Id, TypeN" +
-                "ame FROM TbViewType WHERE (Id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[TbViewType] ([TypeName]) VALUES (@TypeName);\nSELECT Id, TypeNa" +
+                "me FROM TbViewType WHERE (Id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TypeName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TypeName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[TbViewType] SET [TypeName] = @TypeName WHERE (([Id] = @Original_Id)" +
-                " AND ([TypeName] = @Original_TypeName));\r\nSELECT Id, TypeName FROM TbViewType WH" +
-                "ERE (Id = @Id)";
+                " AND ([TypeName] = @Original_TypeName));\nSELECT Id, TypeName FROM TbViewType WHE" +
+                "RE (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TypeName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TypeName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
