@@ -10,10 +10,16 @@ Windows based MVC website based on functional(db) with MSSQL services oriented.<
 - __Profiles__: *ErpDiscountsSubSystemNetCore, IIS Express* <br/>
 
 <br/>
-The solution's repository is segrated to stages (production, preproduction, development) and contains migrated *ERD Diagrams* on *Infastructure.Diagrams*. The main software based on Clean Architecture to enhase Test-driven development (TDD) & Domain-driven development (DDD).<br/>
+The solution's repository is segrated to stages (production, preproduction, development) and contains migrated *ERD Diagrams* on *Infastructure.Diagrams*. <br/> <br/>
+The Diagrams are showing in detail the Entity MigrationsHistory, IUser relations of AspNetUser (Identity - Individual Accounts); as along the Entity Relationsh mapping of
+Customer, Orders, Subscriptions, CustomerFields, History(..). The main software based on Clean Architecture to enhase Test-driven development (TDD) & Domain-driven development (DDD).<br/>
 <br/><br/>
 
-| Architecture Design                                                           |
+<br/><br/>
+**Application Aims**: <br/>
+
+
+| Architecture Architecture                                                           |
 | ------------- |
 | Application (Shared) |
 | Domains  (Core,Common) |
@@ -47,6 +53,12 @@ The app designed in N-Tiers(3) with scope the Dependency Inversion where: <br/> 
 1. Handlers, <br/>
 1. Custom Exceptions, <br/>
 1. ViewModels
+
+**Application UserFlow**: <br/>
+
+The app lanuches, seeds and migrate data in MSSQLLocalDb.<br/><br/>
+Starting in Home Page where users are able to see the Orders and available discounts per object as along the dynamic customer fields.<br/><br/>
+In order for the Unauthorised user to be able to create dynamic fields for Customer, a new user should be registered with Microsoft Identity and login. Once logged in there is a navigation where an authorised user can create dynamic simple string fields and dropdown fields. 
 
 
 
