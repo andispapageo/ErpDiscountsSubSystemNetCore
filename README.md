@@ -2,19 +2,27 @@
 
 ## .NET CORE 6 MVC Application
 
-A web application based on Clean Architecture in order to enhase 
+ErpDiscountsSubSystemNetCore is a ERP and CMS web application that inherits scope of dynamic subscriptions. 
+
+The main idea is based on Clean Architecture in order to enhase 
 Test-driven development (TDD) & Domain-driven development (DDD).
 
 | Architecture Design |
 | ------------- |
-| Application  |
-| Domains  |
-| Infastructures  |
-| Functional Tests  |
-| Integration Tests  |
+| Application (Shared) |
+| Domains (Core,Common) |
+| Infastructures (Persistence) |
+| Functional Tests (Business Logic Tests) |
+| Integration Tests  (Repositories, External Testing)|
+| WebHost Tests  (Mocking webhost )|
 | Unit Tests  |
 
-The main core design of this project which mimics a microservice architecture is based on SOLID:
+The app designed purely on Dependency Inversion where: 
+```Application -> Inherits -> Domain , Infastructure```
+```Infastructure -> Inherits -> Domain```
+```Domain (Common).```
+
+Core design of this project which mimics a microservice architecture is based on SOLID:
 
 | Principles |
 | ------------- |
