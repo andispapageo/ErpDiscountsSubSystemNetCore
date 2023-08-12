@@ -4,8 +4,9 @@
 
 ErpDiscountsSubSystemNetCore is a ERP and CMS web application that inherits scope of dynamic subscriptions. <br/>
 Windows based MVC website based on functional(db) with MSSQL services oriented.<br/>
-<br/>
 
+> Please clone the app here: git clone https://github.com/andispapageo/ErpDiscountsSubSystemNetCore.git
+<br/><br/>
 - __IDE__: *Visual Studio Community* <br/>
 - __Profiles__: *ErpDiscountsSubSystemNetCore, IIS Express* <br/>
 
@@ -19,7 +20,7 @@ Customer, Orders, Subscriptions, CustomerFields, History(..).<br/><br/>
 **ER Application**: <br/>
 ![Alt text](https://github.com/andispapageo/ErpDiscountsSubSystemNetCore/blob/master/Infastructure.Diagrams/Screenshots/MainERDiagram.png)
 
-<br/><br/>
+<br/>
  The main software based on Clean Architecture to enhase Test-driven development (TDD) & Domain-driven development (DDD).<br/>
 <br/>
 
