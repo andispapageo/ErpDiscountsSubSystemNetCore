@@ -40,7 +40,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.Tests", "Applic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Integration.Tests", "Integration.Tests\Integration.Tests.csproj", "{9FDDABCE-EFEA-4740-A763-CA52FF4A1F69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infastructure.Diagrams", "Infastructure.Diagrams\Infastructure.Diagrams.csproj", "{C0CB4176-5236-4AEC-8E03-7640D6B8B42C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infastructure.Diagrams", "Infastructure.Diagrams\Infastructure.Diagrams.csproj", "{C0CB4176-5236-4AEC-8E03-7640D6B8B42C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,7 +81,6 @@ Global
 		{9FDDABCE-EFEA-4740-A763-CA52FF4A1F69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FDDABCE-EFEA-4740-A763-CA52FF4A1F69}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C0CB4176-5236-4AEC-8E03-7640D6B8B42C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C0CB4176-5236-4AEC-8E03-7640D6B8B42C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0CB4176-5236-4AEC-8E03-7640D6B8B42C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0CB4176-5236-4AEC-8E03-7640D6B8B42C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
